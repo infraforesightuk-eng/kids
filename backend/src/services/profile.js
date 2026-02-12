@@ -39,6 +39,15 @@ class ProfileService {
     const profile = await this.db.get('SELECT * FROM Profile WHERE id = ?', id);
     return profile;
   }
+
+  async updateProfile(id, name, avatar, pin = null) {
+    const updatedAt = new Date().toISOString();
+    await this.db.run(
+      'UPDATE Profile SET name = ?, avatar = ?, pin = ?, updatedAt = ? WHERE id = ?',
+      [name, avatar, pin, updatedAt, id]
+    );
+    return this.getProfileById(id); // Return the updated profile
+  }
 }
 
 export default ProfileService;

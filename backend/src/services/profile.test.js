@@ -71,4 +71,21 @@ describe('Profile Service', () => {
     expect(retrievedProfile.avatar).toBe('girl-1');
     expect(retrievedProfile.pin).toBe('1234');
   });
+
+  it('should update an existing profile', async () => {
+    const createdProfile = await profileService.createProfile('Child to Update', 'old-avatar');
+    const updatedProfile = await profileService.updateProfile(createdProfile.id, 'Updated Child', 'new-avatar', '5678');
+
+    expect(updatedProfile).toBeDefined();
+    expect(updatedProfile.id).toBe(createdProfile.id);
+    expect(updatedProfile.name).toBe('Updated Child');
+    expect(updatedProfile.avatar).toBe('new-avatar');
+    expect(updatedProfile.pin).toBe('5678');
+
+    // Verify in database
+    const dbProfile = await db.get('SELECT * FROM Profile WHERE id = ?', createdProfile.id);
+    expect(dbProfile.name).toBe('Updated Child');
+    expect(dbProfile.avatar).toBe('new-avatar');
+    expect(dbProfile.pin).toBe('5678');
+  });
 });
