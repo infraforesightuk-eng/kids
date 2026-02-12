@@ -48,6 +48,10 @@ class ProfileService {
     );
     return this.getProfileById(id); // Return the updated profile
   }
+
+  async deleteProfile(id) {
+    await this.db.run('DELETE FROM Profile WHERE id = ?', id);
+  }
 }
 
 export default ProfileService;
