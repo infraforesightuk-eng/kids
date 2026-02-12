@@ -9,7 +9,7 @@
     - [x] Task: Implement child profile API endpoints.
     - [x] Task: Implement getProfileById. [aaef13f]
     - [x] Task: Implement updateProfile. [d7a7968]
-    - [x] Task: Implement deleteProfile.
+    - [x] Task: Implement deleteProfile. [704375d]
     - [ ] Task: Implement child profile API endpoints.
 - [ ] Task: Implement API endpoints for content whitelisting management (add/remove content to whitelist).
     - [ ] Task: Write tests for content whitelisting API endpoints.
