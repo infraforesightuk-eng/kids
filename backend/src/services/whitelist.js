@@ -38,6 +38,13 @@ class WhitelistService {
     const whitelist = await this.db.all('SELECT * FROM Whitelist WHERE profileId = ?', profileId);
     return whitelist;
   }
+
+  async removeContentFromWhitelist(profileId, tmdbId, mediaType) {
+    await this.db.run(
+      'DELETE FROM Whitelist WHERE profileId = ? AND tmdbId = ? AND mediaType = ?',
+      [profileId, tmdbId, mediaType]
+    );
+  }
 }
 
 export default WhitelistService;
