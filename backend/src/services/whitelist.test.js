@@ -75,4 +75,21 @@ describe('Whitelist Service', () => {
     expect(dbWhitelistItem).toBeDefined();
     expect(dbWhitelistItem.tmdbId).toBe('123');
   });
+
+  it('should retrieve whitelist items by profile ID', async () => {
+    const profileId = uuidv4();
+    await db.run('INSERT INTO Profile (id, name) VALUES (?, ?)', [profileId, 'Whitelist Child']);
+
+    await whitelistService.addContentToWhitelist(profileId, 'TMDB1', 'movie');
+    await whitelistService.addContentToWhitelist(profileId, 'TMDB2', 'tv');
+    await whitelistService.addContentToWhitelist(uuidv4(), 'TMDB3', 'movie'); // Another profile's content
+
+    const whitelist = await whitelistService.getWhitelistByProfileId(profileId);
+
+    expect(whitelist).toBeDefined();
+    expect(whitelist.length).toBe(2);
+    expect(whitelist[0].tmdbId).toBe('TMDB1');
+    expect(whitelist[1].tmdbId).toBe('TMDB2');
+    expect(whitelist[0].profileId).toBe(profileId);
+  });
 });

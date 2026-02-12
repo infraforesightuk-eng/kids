@@ -33,6 +33,11 @@ class WhitelistService {
 
     return { id, profileId, tmdbId, mediaType, addedAt };
   }
+
+  async getWhitelistByProfileId(profileId) {
+    const whitelist = await this.db.all('SELECT * FROM Whitelist WHERE profileId = ?', profileId);
+    return whitelist;
+  }
 }
 
 export default WhitelistService;
