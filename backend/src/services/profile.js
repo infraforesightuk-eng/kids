@@ -34,6 +34,11 @@ class ProfileService {
     
     return { id, name, avatar, pin, createdAt, updatedAt };
   }
+
+  async getProfileById(id) {
+    const profile = await this.db.get('SELECT * FROM Profile WHERE id = ?', id);
+    return profile;
+  }
 }
 
 export default ProfileService;

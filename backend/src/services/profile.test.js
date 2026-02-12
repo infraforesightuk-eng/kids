@@ -60,4 +60,15 @@ describe('Profile Service', () => {
     expect(dbProfile).toBeDefined();
     expect(dbProfile.name).toBe('Test Child');
   });
+
+  it('should retrieve a profile by ID', async () => {
+    const createdProfile = await profileService.createProfile('Another Child', 'girl-1', '1234');
+    const retrievedProfile = await profileService.getProfileById(createdProfile.id);
+
+    expect(retrievedProfile).toBeDefined();
+    expect(retrievedProfile.id).toBe(createdProfile.id);
+    expect(retrievedProfile.name).toBe('Another Child');
+    expect(retrievedProfile.avatar).toBe('girl-1');
+    expect(retrievedProfile.pin).toBe('1234');
+  });
 });
