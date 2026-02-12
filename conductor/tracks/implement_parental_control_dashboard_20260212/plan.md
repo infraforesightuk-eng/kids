@@ -4,7 +4,7 @@
 - [x] Task: Design database schema for child profiles, content whitelists, and time limits. [b043aa0]
     - [x] Task: Write tests for database schema design.
     - [x] Task: Implement database schema design. [34f11b4]
-- [x] Task: Implement API endpoints for child profile creation, retrieval, update, and deletion.
+- [x] Task: Implement API endpoints for child profile creation, retrieval, update, and deletion. [61e9d7c]
     - [x] Task: Write tests for child profile API endpoints.
     - [x] Task: Implement child profile API endpoints.
     - [ ] Task: Implement child profile API endpoints.
