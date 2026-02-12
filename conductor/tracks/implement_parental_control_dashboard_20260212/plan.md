@@ -1,8 +1,9 @@
 # Plan for Implementing Parental Control Dashboard
 
 ## Phase 1: Database and Backend API for Child Profiles and Whitelisting
-- [ ] Task: Design database schema for child profiles, content whitelists, and time limits.
-    - [ ] Task: Write tests for database schema design.
+- [x] Task: Design database schema for child profiles, content whitelists, and time limits.
+    - [x] Task: Write tests for database schema design.
+    - [ ] Task: Implement database schema design.
     - [ ] Task: Implement database schema design.
 - [ ] Task: Implement API endpoints for child profile creation, retrieval, update, and deletion.
     - [ ] Task: Write tests for child profile API endpoints.
