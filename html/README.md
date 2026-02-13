@@ -3,7 +3,7 @@
 Welcome to **movieIguess**, your one-stop streaming frontend for movies and TV shows!  
 Discover, watch, and host watch parties with friends – all in one sleek interface.
 
-Link: <https://home.btfm.uk/>
+Link: <https://kids.btfm.uk/>
 
 ---
 
