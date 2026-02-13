@@ -24,8 +24,8 @@
 - [x] Task: Integrate child profile UI with backend API. [76d86c7]
     - [x] Task: Write tests for child profile UI integration. [76d86c7]
     - [x] Task: Implement child profile UI integration. [2224426]
-- [ ] Task: Develop UI for content whitelisting.
-    - [ ] Task: Write tests for content whitelisting UI components.
+- [~] Task: Develop UI for content whitelisting.
+    - [~] Task: Write tests for content whitelisting UI components.
     - [ ] Task: Implement content whitelisting UI components.
 - [ ] Task: Integrate content whitelisting UI with backend API.
     - [ ] Task: Write tests for content whitelisting UI integration.
