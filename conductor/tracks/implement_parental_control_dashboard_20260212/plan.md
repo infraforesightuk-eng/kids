@@ -10,13 +10,11 @@
     - [x] Task: Implement getProfileById. [aaef13f]
     - [x] Task: Implement updateProfile. [d7a7968]
     - [x] Task: Implement deleteProfile. [704375d]
-    - [ ] Task: Implement child profile API endpoints.
-- [~] Task: Implement API endpoints for content whitelisting management (add/remove content to whitelist).
-    - [~] Task: Write tests for content whitelisting API endpoints.
+- [x] Task: Implement API endpoints for content whitelisting management (add/remove content to whitelist). [5638a74]
+    - [x] Task: Write tests for content whitelisting API endpoints. [5638a74]
     - [x] Task: Implement addContentToWhitelist. [404330c]
     - [x] Task: Implement getWhitelistByProfileId. [1b2374e]
     - [x] Task: Implement removeContentFromWhitelist. [326b183]
-    - [ ] Task: Implement content whitelisting API endpoints.
 - [ ] Task: Conductor - User Manual Verification 'Phase 1: Database and Backend API for Child Profiles and Whitelisting' (Protocol in workflow.md)
 
 ## Phase 2: Frontend Development for Child Profile Management
