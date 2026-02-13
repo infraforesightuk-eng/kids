@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Force light mode meta tags for aggressive browsers -->
+    <meta name="color-scheme" content="light only">
+    <meta name="supported-color-schemes" content="light">
+    <meta name="theme-color" content="#000000">
+    <meta name="msapplication-navbutton-color" content="#000000">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="mobile-web-app-capable" content="yes">
+    
+    <!-- ANTI-FORCED-DARK-MODE SCRIPT -->
+    <script>
+        (function() {
+            'use strict';
+            let forcedDarkDetected = false;
+            
+            function detectForcedDarkMode() {
+                const testDiv = document.createElement('div');
+                testDiv.style.cssText = `
+                    position: fixed !important;
+                    top: -1000px !important;
+                    width: 1px !important;
+                    height: 1px !important;
+                    background-color: rgb(255, 255, 255) !important;
+                    z-index: -9999 !important;
+                `;
+                document.documentElement.appendChild(testDiv);
+                
+                setTimeout(() => {
+                    const computed = window.getComputedStyle(testDiv);
+                    if (computed.backgroundColor.includes('0, 0, 0')) {
+                        forcedDarkDetected = true;
+                        const style = document.createElement('style');
+                        style.textContent = `
+                            html { filter: invert(1) hue-rotate(180deg) !important; }
+                            img, video, svg { filter: invert(1) hue-rotate(180deg) !important; }
+                        `;
+                        document.head.appendChild(style);
+                    }
+                    testDiv.remove();
+                }, 100);
+            }
+            
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', detectForcedDarkMode);
+            } else {
+                detectForcedDarkMode();
+            }
+        })();
+    </script>
+    
+    <title>Toast Demo - MovieIGuess</title>
+    <link rel="icon" href="src/assets/logo.png">
+    <link rel="stylesheet" href="toast.css">
+    <style>
+        /* MAXIMUM FORCE: Block ALL dark mode attempts */
+        :root {
+            color-scheme: light only !important;
+            -webkit-color-scheme: light only !important;
+        }
+        
+        *, *::before, *::after {
+            color-scheme: light only !important;
+            -webkit-color-scheme: light only !important;
+            forced-color-adjust: none !important;
+            -webkit-forced-color-adjust: none !important;
+            filter: none !important;
+            -webkit-filter: none !important;
+            -moz-filter: none !important;
+            -ms-filter: none !important;
+            -o-filter: none !important;
+        }
+        
+        html, body {
+            color-scheme: light only !important;
+            -webkit-color-scheme: light only !important;
+            forced-color-adjust: none !important;
+            -webkit-forced-color-adjust: none !important;
+        }
+        
+        /* IMAGES AND LOGOS: Prevent any color modifications */
+        img, svg, picture, canvas, video {
+            color-scheme: light only !important;
+            -webkit-color-scheme: light only !important;
+            forced-color-adjust: none !important;
+            -webkit-forced-color-adjust: none !important;
+            filter: none !important;
+            -webkit-filter: none !important;
+            -moz-filter: none !important;
+            -ms-filter: none !important;
+            -o-filter: none !important;
+            mix-blend-mode: normal !important;
+            isolation: isolate !important;
+        }
+        
+        /* Specific logo protection */
+        .logo, [class*="logo"], #logo, 
+        img[src*="logo"], img[alt*="logo"], 
+        img[src*="Logo"], img[alt*="Logo"] {
+            filter: none !important;
+            -webkit-filter: none !important;
+            forced-color-adjust: none !important;
+            -webkit-forced-color-adjust: none !important;
+            mix-blend-mode: normal !important;
+            isolation: isolate !important;
+        }
+        
+        /* Block dark mode media queries COMPLETELY */
+        @media (prefers-color-scheme: dark) {
+            *, *::before, *::after {
+                color-scheme: light only !important;
+                -webkit-color-scheme: light only !important;
+                forced-color-adjust: none !important;
+                -webkit-forced-color-adjust: none !important;
+                filter: none !important;
+                -webkit-filter: none !important;
+            }
+            
+            img, svg, picture, canvas, video {
+                filter: none !important;
+                -webkit-filter: none !important;
+                forced-color-adjust: none !important;
+                -webkit-forced-color-adjust: none !important;
+            }
+        }
+        
+        /* Force all containers to respect original colors */
+        div, section, article, aside, main, header, footer, nav {
+            forced-color-adjust: none !important;
+            -webkit-forced-color-adjust: none !important;
+            filter: none !important;
+            -webkit-filter: none !important;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            color: white;
+            margin: 0;
+            padding: 40px;
+            min-height: 100vh;
+        }
+        
+        .demo-container {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        h1 {
+            margin-bottom: 40px;
+            color: #e50914;
+        }
+        
+        .button-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+        
+        .demo-btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            color: white;
+        }
+        
+        .demo-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        }
+        
+        .btn-success {
+            background: linear-gradient(135deg, #22c55e, #16a34a);
+        }
+        
+        .btn-error {
+            background: linear-gradient(135deg, #ef4444, #dc2626);
+        }
+        
+        .btn-warning {
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+        }
+        
+        .btn-info {
+            background: linear-gradient(135deg, #3b82f6, #2563eb);
+        }
+        
+        .btn-clear {
+            background: linear-gradient(135deg, #6b7280, #4b5563);
+        }
+        
+        .code-example {
+            background: rgba(0,0,0,0.3);
+            padding: 20px;
+            border-radius: 8px;
+            text-align: left;
+            margin-top: 40px;
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+    <div class="demo-container">
+        <h1>🎬 Toast Notification Demo</h1>
+        
+        <div class="button-grid">
+            <button class="demo-btn btn-success" onclick="showSuccess('Movie added to watchlist!', { title: 'Success' })">
+                Success Toast
+            </button>
+            
+            <button class="demo-btn btn-error" onclick="showError('Failed to load movie details. Please try again.', { title: 'Error' })">
+                Error Toast
+            </button>
+            
+            <button class="demo-btn btn-warning" onclick="showWarning('This movie may contain adult content.', { title: 'Warning' })">
+                Warning Toast
+            </button>
+            
+            <button class="demo-btn btn-info" onclick="showInfo('New movies added to the database!', { title: 'Info' })">
+                Info Toast
+            </button>
+            
+            <button class="demo-btn btn-clear" onclick="Toast.removeAll()">
+                Clear All Toasts
+            </button>
+        </div>
+        
+        <div class="button-grid">
+            <button class="demo-btn btn-success" onclick="showSuccess('Quick success message!')">
+                Simple Success
+            </button>
+            
+            <button class="demo-btn btn-error" onclick="showError('Something went wrong!', { duration: 8000, clickToDismiss: false })">
+                Long Error (8s)
+            </button>
+            
+            <button class="demo-btn btn-warning" onclick="showWarning('Custom styled warning', { className: 'toast-large' })">
+                Large Warning
+            </button>
+            
+            <button class="demo-btn btn-info" onclick="showInfo('No progress bar', { showProgress: false })">
+                No Progress Bar
+            </button>
+        </div>
+
+        <div class="code-example">
+            <h3>Usage Examples:</h3>
+            <pre>
+// Simple usage
+showSuccess('Movie saved successfully!');
+showError('Failed to load data');
+showWarning('Check your connection');
+showInfo('Welcome to MovieIGuess!');
+
+// Advanced usage with options
+showSuccess('Movie added!', {
+    title: 'Success',
+    duration: 5000,
+    className: 'toast-large',
+    showProgress: false,
+    clickToDismiss: true
+});
+
+// Using the Toast instance directly
+Toast.show('Custom message', 'success', 3000, {
+    title: 'Custom Title'
+});
+
+// Remove all toasts
+Toast.removeAll();
+            </pre>
+        </div>
+    </div>
+
+    <script src="src/toast.js"></script>
+</body>
+</html>

@@ -1,0 +1,1627 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Force light mode meta tags for aggressive browsers -->
+    <meta name="color-scheme" content="light only">
+    <meta name="supported-color-schemes" content="light">
+    <meta name="theme-color" content="#000000">
+    <meta name="msapplication-navbutton-color" content="#000000">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="mobile-web-app-capable" content="yes">
+
+    <!-- ANTI-FORCED-DARK-MODE SCRIPT - Must run before page load -->
+    <script>
+        (function () {
+            'use strict';
+            let forcedDarkDetected = false;
+
+            function detectForcedDarkMode() {
+                const testDiv = document.createElement('div');
+                testDiv.style.cssText = `
+                    position: fixed !important;
+                    top: -1000px !important;
+                    left: -1000px !important;
+                    width: 1px !important;
+                    height: 1px !important;
+                    background-color: rgb(255, 255, 255) !important;
+                    color: rgb(0, 0, 0) !important;
+                    z-index: -9999 !important;
+                    pointer-events: none !important;
+                `;
+                document.documentElement.appendChild(testDiv);
+
+                setTimeout(() => {
+                    const computed = window.getComputedStyle(testDiv);
+                    const bgColor = computed.backgroundColor;
+                    const textColor = computed.color;
+
+                    if (bgColor.includes('0, 0, 0') || bgColor.includes('rgb(0') ||
+                        textColor.includes('255, 255, 255') || textColor.includes('rgb(255')) {
+                        forcedDarkDetected = true;
+                        applyAntiForcedDarkMode();
+                    }
+                    testDiv.remove();
+                }, 100);
+            }
+
+            function applyAntiForcedDarkMode() {
+                const style = document.createElement('style');
+                style.id = 'anti-forced-dark-mode';
+                style.textContent = `
+                    html {
+                        filter: invert(1) hue-rotate(180deg) !important;
+                        -webkit-filter: invert(1) hue-rotate(180deg) !important;
+                    }
+                    img, video, svg, picture, canvas,
+                    .logo, [class*="logo"], #logo,
+                    img[src*="logo"], img[alt*="logo"] {
+                        filter: invert(1) hue-rotate(180deg) !important;
+                        -webkit-filter: invert(1) hue-rotate(180deg) !important;
+                    }
+                `;
+                document.head.appendChild(style);
+            }
+
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', detectForcedDarkMode);
+            } else {
+                detectForcedDarkMode();
+            }
+            setTimeout(detectForcedDarkMode, 500);
+        })();
+    </script>
+
+    <title>MovieIGuess - Happy Watching</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="netflix-style.css">
+    <link rel="stylesheet" href="search.css">
+    <link rel="stylesheet" href="watch.css">
+    <link rel="stylesheet" href="toast.css">
+    <link rel="icon" href="src/assets/logo.png">
+    <script src="https://kit.fontawesome.com/22dc8d85a3.js" crossorigin="anonymous"></script>
+    <!-- Font Awesome CDN fallback (added) -->
+    <link id="fa-cdn-fallback" rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous"
+        referrerpolicy="no-referrer" />
+    <script>(function () { function loadCDN() { if (document.getElementById('fa-cdn-fallback')) return; var l = document.createElement('link'); l.id = 'fa-cdn-fallback'; l.rel = 'stylesheet'; l.href = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css'; l.crossOrigin = 'anonymous'; l.referrerPolicy = 'no-referrer'; document.head.appendChild(l); } function isLoaded() { if (window.FontAwesome) return true; if (document.querySelector('svg.svg-inline--fa')) return true; try { var i = document.createElement('i'); i.className = 'fa-solid fa-circle'; i.style.position = 'absolute'; i.style.visibility = 'hidden'; document.body.appendChild(i); var ff = window.getComputedStyle(i).getPropertyValue('font-family') || ''; var loaded = ff.toLowerCase().indexOf('fontawesome') !== -1 || i.offsetWidth > 0; document.body.removeChild(i); return loaded } catch (e) { return false } } if (!isLoaded()) { setTimeout(function () { if (!isLoaded()) loadCDN(); }, 1000); window.addEventListener('load', function () { if (!isLoaded()) loadCDN(); }); } })();</script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'netflix-red': '#E50914',
+                        'netflix-black': '#000000',
+                        'netflix-dark': '#141414',
+                        'netflix-gray': '#333333',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* MAXIMUM FORCE: Block ALL dark mode attempts */
+        :root {
+            color-scheme: light only !important;
+            -webkit-color-scheme: light only !important;
+        }
+
+        *,
+        *::before,
+        *::after {
+            color-scheme: light only !important;
+            -webkit-color-scheme: light only !important;
+            forced-color-adjust: none !important;
+            -webkit-forced-color-adjust: none !important;
+            filter: none !important;
+            -webkit-filter: none !important;
+            -moz-filter: none !important;
+            -ms-filter: none !important;
+            -o-filter: none !important;
+        }
+
+        html,
+        body {
+            color-scheme: light only !important;
+            -webkit-color-scheme: light only !important;
+            forced-color-adjust: none !important;
+            -webkit-forced-color-adjust: none !important;
+            background-color: #000000 !important;
+        }
+
+        /* IMAGES AND LOGOS: Prevent any color modifications */
+        img,
+        svg,
+        picture,
+        canvas,
+        video {
+            color-scheme: light only !important;
+            -webkit-color-scheme: light only !important;
+            forced-color-adjust: none !important;
+            -webkit-forced-color-adjust: none !important;
+            filter: none !important;
+            -webkit-filter: none !important;
+            -moz-filter: none !important;
+            -ms-filter: none !important;
+            -o-filter: none !important;
+            mix-blend-mode: normal !important;
+            isolation: isolate !important;
+        }
+
+        /* Specific logo protection */
+        .logo,
+        [class*="logo"],
+        #logo,
+        img[src*="logo"],
+        img[alt*="logo"],
+        img[src*="Logo"],
+        img[alt*="Logo"] {
+            filter: none !important;
+            -webkit-filter: none !important;
+            forced-color-adjust: none !important;
+            -webkit-forced-color-adjust: none !important;
+            mix-blend-mode: normal !important;
+            isolation: isolate !important;
+        }
+
+        /* Block dark mode media queries COMPLETELY */
+        @media (prefers-color-scheme: dark) {
+
+            *,
+            *::before,
+            *::after {
+                color-scheme: light only !important;
+                -webkit-color-scheme: light only !important;
+                forced-color-adjust: none !important;
+                -webkit-forced-color-adjust: none !important;
+                filter: none !important;
+                -webkit-filter: none !important;
+            }
+
+            html,
+            body {
+                background-color: #000000 !important;
+                color: #ffffff !important;
+            }
+
+            img,
+            svg,
+            picture,
+            canvas,
+            video {
+                filter: none !important;
+                -webkit-filter: none !important;
+                forced-color-adjust: none !important;
+                -webkit-forced-color-adjust: none !important;
+            }
+        }
+
+        /* Force all containers to respect original colors */
+        div,
+        section,
+        article,
+        aside,
+        main,
+        header,
+        footer,
+        nav {
+            forced-color-adjust: none !important;
+            -webkit-forced-color-adjust: none !important;
+            filter: none !important;
+            -webkit-filter: none !important;
+        }
+
+        /* Lock Netflix brand colors */
+        .text-netflix-red {
+            color: #E50914 !important;
+        }
+
+        .bg-netflix-red {
+            background-color: #E50914 !important;
+        }
+
+        .bg-netflix-black {
+            background-color: #000000 !important;
+        }
+
+        .bg-netflix-dark {
+            background-color: #141414 !important;
+        }
+
+        .text-white {
+            color: #ffffff !important;
+        }
+
+        .bg-black {
+            background-color: #000000 !important;
+        }
+
+        /* Override any browser-imposed styles */
+        input,
+        textarea,
+        select,
+        button {
+            color-scheme: light only !important;
+            -webkit-color-scheme: light only !important;
+            forced-color-adjust: none !important;
+            -webkit-forced-color-adjust: none !important;
+        }
+
+        /* Professional Watch Page Styling */
+        .watch-hero {
+            background: linear-gradient(135deg, rgba(229, 9, 20, 0.1) 0%, rgba(0, 0, 0, 0.8) 100%);
+            border-radius: 20px;
+            overflow: hidden;
+            margin-bottom: 2rem;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .watch-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, #ffffff 0%, #f0f0f0 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .watch-tagline {
+            color: rgba(255, 255, 255, 0.8);
+            font-style: italic;
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+
+        .video-container {
+            position: relative;
+            width: 100%;
+            height: 0;
+            padding-bottom: 56.25%;
+            /* 16:9 aspect ratio */
+            background: #000;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+            margin-bottom: 2rem;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .server-selection {
+            background: rgba(26, 26, 26, 0.8);
+            backdrop-filter: blur(20px);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .server-selection h3 {
+            color: #ffffff;
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .server-selection h3::before {
+            content: "🎬";
+            margin-right: 0.5rem;
+        }
+
+        .server-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 12px;
+        }
+
+        .server-btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            color: #ffffff;
+            padding: 12px 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            font-size: 14px;
+            text-align: center;
+        }
+
+        .server-btn:hover {
+            background: rgba(229, 9, 20, 0.2);
+            border-color: rgba(229, 9, 20, 0.5);
+            transform: translateY(-2px);
+        }
+
+        .server-btn.active {
+            background: linear-gradient(135deg, #E50914, #B8070F);
+            border-color: #E50914;
+            box-shadow: 0 8px 25px rgba(229, 9, 20, 0.3);
+        }
+
+        .movie-details {
+            background: rgba(26, 26, 26, 0.8);
+            backdrop-filter: blur(20px);
+            border-radius: 16px;
+            padding: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .details-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .detail-item {
+            margin-bottom: 1rem;
+        }
+
+        .detail-label {
+            color: rgba(255, 255, 255, 0.7);
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+            text-transform: uppercase;
+            font-size: 0.875rem;
+            letter-spacing: 0.05em;
+        }
+
+        .detail-value {
+            color: #ffffff;
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        .detail-value a {
+            color: #E50914;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .detail-value a:hover {
+            color: #ff1e2d;
+        }
+
+        .season-selection {
+            background: rgba(26, 26, 26, 0.8);
+            backdrop-filter: blur(20px);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .season-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 12px;
+            margin-top: 1rem;
+        }
+
+        .season-btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            color: #ffffff;
+            padding: 12px 16px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            font-size: 14px;
+            text-align: center;
+        }
+
+        .season-btn:hover {
+            background: rgba(229, 9, 20, 0.2);
+            border-color: rgba(229, 9, 20, 0.5);
+            transform: translateY(-2px);
+        }
+
+        .season-btn.active {
+            background: linear-gradient(135deg, #E50914, #B8070F);
+            border-color: #E50914;
+            box-shadow: 0 8px 25px rgba(229, 9, 20, 0.3);
+        }
+
+        .episode-selection {
+            background: rgba(26, 26, 26, 0.8);
+            backdrop-filter: blur(20px);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .episode-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+            gap: 8px;
+            margin-top: 1rem;
+        }
+
+        .episode-btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            color: #ffffff;
+            padding: 8px 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            font-size: 13px;
+            text-align: center;
+        }
+
+        .episode-btn:hover {
+            background: rgba(229, 9, 20, 0.2);
+            border-color: rgba(229, 9, 20, 0.5);
+            transform: translateY(-1px);
+        }
+
+        .episode-btn.active {
+            background: linear-gradient(135deg, #E50914, #B8070F);
+            border-color: #E50914;
+            box-shadow: 0 4px 15px rgba(229, 9, 20, 0.3);
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .watch-title {
+                font-size: 2rem;
+            }
+
+            .server-grid {
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            }
+
+            .season-grid {
+                grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            }
+
+            .episode-grid {
+                grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
+            }
+
+            .server-selection,
+            .movie-details,
+            .season-selection,
+            .episode-selection {
+                padding: 1.5rem;
+            }
+
+            /* Add bottom margin for video sidebar layout and movie content wrapper */
+            .video-sidebar-layout,
+            .movie-content-wrapper,
+            .movie-details {
+                margin-bottom: 2rem !important;
+            }
+
+            /* Additional spacing for main container on mobile */
+            .container {
+                margin-bottom: 3rem !important;
+                padding-bottom: 2rem !important;
+            }
+        }
+
+        /* Loading Animation */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .container:not(.hidden) {
+            animation: fadeIn 0.6s ease-out;
+        }
+
+        /* Global Minimal White Scrollbar for All Pages */
+        * {
+            scrollbar-width: thin !important;
+            scrollbar-color: rgba(255, 255, 255, 0.3) transparent !important;
+        }
+
+        *::-webkit-scrollbar {
+            width: 6px !important;
+            height: 6px !important;
+            background: transparent !important;
+        }
+
+        *::-webkit-scrollbar-track {
+            background: transparent !important;
+        }
+
+        *::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.3) !important;
+            border-radius: 10px !important;
+            transition: background 0.3s ease !important;
+        }
+
+        *::-webkit-scrollbar-thumb:hover {
+            background: rgba(255, 255, 255, 0.5) !important;
+        }
+
+        *::-webkit-scrollbar-corner {
+            background: transparent !important;
+        }
+
+        /* Body and HTML specific scrollbar */
+        html,
+        body {
+            scrollbar-width: thin !important;
+            scrollbar-color: rgba(255, 255, 255, 0.3) transparent !important;
+        }
+
+        html::-webkit-scrollbar,
+        body::-webkit-scrollbar {
+            width: 6px !important;
+            background: transparent !important;
+        }
+
+        html::-webkit-scrollbar-track,
+        body::-webkit-scrollbar-track {
+            background: transparent !important;
+        }
+
+        html::-webkit-scrollbar-thumb,
+        body::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.3) !important;
+            border-radius: 10px !important;
+            transition: background 0.3s ease !important;
+        }
+
+        html::-webkit-scrollbar-thumb:hover,
+        body::-webkit-scrollbar-thumb:hover {
+            background: rgba(255, 255, 255, 0.5) !important;
+        }
+
+        /* Episode Selection Modal Styles */
+        .episode-select-btn {
+            background: linear-gradient(135deg, #E50914, #B8070F);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            max-width: 300px;
+            margin: 1rem auto;
+            box-shadow: 0 4px 15px rgba(229, 9, 20, 0.3);
+        }
+
+        .episode-select-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(229, 9, 20, 0.4);
+        }
+
+        /* CUSTOM MODAL CSS - OVERRIDES TAILWIND COMPLETELY */
+        .episode-modal {
+            position: fixed !important;
+            top: 0 !important;
+            left: 0 !important;
+            right: 0 !important;
+            bottom: 0 !important;
+            width: 100vw !important;
+            height: 100vh !important;
+            z-index: 9999 !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            padding: 1rem !important;
+            opacity: 1 !important;
+            visibility: visible !important;
+            pointer-events: auto !important;
+            background: transparent !important;
+            margin: 0 !important;
+            transform: none !important;
+        }
+
+        /* Hidden state for modal */
+        .episode-modal.hidden {
+            display: none !important;
+            opacity: 0 !important;
+            visibility: hidden !important;
+            pointer-events: none !important;
+        }
+
+        /* Modal backdrop with glassmorphism */
+        .modal-backdrop {
+            position: absolute !important;
+            top: 0 !important;
+            left: 0 !important;
+            right: 0 !important;
+            bottom: 0 !important;
+            width: 100% !important;
+            height: 100% !important;
+            background: rgba(0, 0, 0, 0.85) !important;
+            backdrop-filter: blur(8px) !important;
+            -webkit-backdrop-filter: blur(8px) !important;
+            z-index: 9998 !important;
+        }
+
+        /* Modal content - FORCE VISIBILITY */
+        .modal-content {
+            background: linear-gradient(135deg, rgba(15, 15, 15, 0.98), rgba(25, 25, 25, 0.95)) !important;
+            border-radius: 20px !important;
+            border: 2px solid rgba(229, 9, 20, 0.6) !important;
+            box-shadow:
+                0 25px 50px rgba(0, 0, 0, 0.8),
+                0 0 0 1px rgba(255, 255, 255, 0.1),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
+            backdrop-filter: blur(20px) !important;
+            -webkit-backdrop-filter: blur(20px) !important;
+            max-width: 90vw !important;
+            max-height: 85vh !important;
+            width: 100% !important;
+            min-height: 400px !important;
+            overflow: hidden !important;
+            position: relative !important;
+            z-index: 9999 !important;
+            margin: 0 auto !important;
+            display: block !important;
+            visibility: visible !important;
+            opacity: 1 !important;
+            transform: none !important;
+            color: white !important;
+        }
+
+        /* Override any Tailwind hiding */
+        .episode-modal:not(.hidden) .modal-content {
+            display: block !important;
+            visibility: visible !important;
+            opacity: 1 !important;
+        }
+
+        /* Modal header styling */
+        .modal-header {
+            display: flex !important;
+            align-items: center !important;
+            justify-content: space-between !important;
+            padding: 1.5rem !important;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.15) !important;
+            background: transparent !important;
+            color: white !important;
+        }
+
+        .modal-header h3 {
+            color: white !important;
+            margin: 0 !important;
+            font-size: 1.3rem !important;
+            font-weight: 600 !important;
+            display: block !important;
+            visibility: visible !important;
+        }
+
+        .modal-close-btn {
+            background: none !important;
+            border: none !important;
+            color: white !important;
+            font-size: 1.5rem !important;
+            cursor: pointer !important;
+            padding: 0.5rem !important;
+            border-radius: 50% !important;
+            transition: background 0.3s ease !important;
+            display: block !important;
+            visibility: visible !important;
+        }
+
+        .modal-close-btn:hover {
+            background: rgba(255, 255, 255, 0.1) !important;
+        }
+
+        /* Modal body styling */
+        .modal-body {
+            padding: 1.5rem !important;
+            max-height: 60vh !important;
+            overflow-y: auto !important;
+            color: white !important;
+            display: block !important;
+            visibility: visible !important;
+        }
+
+        .season-selection-modal,
+        .episode-selection-modal {
+            display: block !important;
+            visibility: visible !important;
+            color: white !important;
+        }
+
+        .season-selection-modal h4,
+        .episode-selection-modal h4 {
+            color: white !important;
+            margin: 0 0 1rem 0 !important;
+            font-size: 1.1rem !important;
+            font-weight: 600 !important;
+            display: block !important;
+            visibility: visible !important;
+        }
+
+        .episode-selection-modal {
+            margin-top: 2rem !important;
+        }
+
+        /* PROFESSIONAL MOBILE SEASON & EPISODE CARDS */
+        .season-grid,
+        .episode-grid {
+            display: grid !important;
+            gap: 1rem !important;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)) !important;
+            visibility: visible !important;
+            padding: 0.5rem 0 !important;
+        }
+
+        .season-btn,
+        .episode-btn {
+            background: linear-gradient(135deg, rgba(40, 40, 40, 0.95), rgba(30, 30, 30, 0.98)) !important;
+            border: 1px solid rgba(255, 255, 255, 0.15) !important;
+            border-radius: 12px !important;
+            padding: 1rem !important;
+            cursor: pointer !important;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+            width: 100% !important;
+            text-align: center !important;
+            display: flex !important;
+            flex-direction: column !important;
+            align-items: center !important;
+            justify-content: center !important;
+            visibility: visible !important;
+            color: white !important;
+            font-size: 0.95rem !important;
+            font-weight: 500 !important;
+            min-height: 80px !important;
+            position: relative !important;
+            overflow: hidden !important;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2) !important;
+        }
+
+        /* Glassmorphism effect for cards */
+        .season-btn::before,
+        .episode-btn::before {
+            content: '' !important;
+            position: absolute !important;
+            top: 0 !important;
+            left: 0 !important;
+            right: 0 !important;
+            bottom: 0 !important;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05)) !important;
+            backdrop-filter: blur(10px) !important;
+            -webkit-backdrop-filter: blur(10px) !important;
+            border-radius: 12px !important;
+            z-index: -1 !important;
+        }
+
+        .season-btn:hover,
+        .episode-btn:hover {
+            background: linear-gradient(135deg, rgba(229, 9, 20, 0.4), rgba(185, 7, 15, 0.5)) !important;
+            border-color: rgba(229, 9, 20, 0.8) !important;
+            transform: translateY(-4px) scale(1.03) !important;
+            box-shadow:
+                0 8px 25px rgba(229, 9, 20, 0.3),
+                0 4px 15px rgba(0, 0, 0, 0.3) !important;
+        }
+
+        .season-btn.active {
+            background: linear-gradient(135deg, rgba(229, 9, 20, 0.6), rgba(185, 7, 15, 0.7)) !important;
+            border-color: #e50914 !important;
+            box-shadow:
+                0 0 20px rgba(229, 9, 20, 0.5),
+                0 4px 15px rgba(0, 0, 0, 0.3) !important;
+            transform: scale(1.05) !important;
+        }
+
+        /* ENHANCED PROFESSIONAL EPISODE CARDS WITH FULL DETAILS */
+        .episode-btn {
+            background: linear-gradient(145deg, rgba(25, 25, 25, 0.95), rgba(15, 15, 15, 0.98)) !important;
+            border: 1px solid rgba(255, 255, 255, 0.1) !important;
+            border-radius: 16px !important;
+            padding: 0 !important;
+            cursor: pointer !important;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+            width: 100% !important;
+            display: flex !important;
+            flex-direction: column !important;
+            align-items: stretch !important;
+            justify-content: flex-start !important;
+            visibility: visible !important;
+            color: white !important;
+            min-height: 180px !important;
+            position: relative !important;
+            overflow: hidden !important;
+            box-shadow:
+                0 4px 20px rgba(0, 0, 0, 0.3),
+                0 2px 8px rgba(0, 0, 0, 0.2) !important;
+            backdrop-filter: blur(10px) !important;
+            -webkit-backdrop-filter: blur(10px) !important;
+        }
+
+        /* Episode card header - NO PLAY ICON */
+        .episode-btn::before {
+            display: none !important;
+            content: none !important;
+        }
+
+        /* Episode card content container */
+        .episode-btn {
+            padding: 20px !important;
+            text-align: left !important;
+            gap: 8px !important;
+        }
+
+        /* Hover effects */
+        .episode-btn:hover {
+            background: linear-gradient(145deg, rgba(35, 35, 35, 0.98), rgba(25, 25, 25, 0.99)) !important;
+            border-color: rgba(229, 9, 20, 0.6) !important;
+            transform: translateY(-8px) scale(1.02) !important;
+            box-shadow:
+                0 12px 40px rgba(229, 9, 20, 0.2),
+                0 8px 25px rgba(0, 0, 0, 0.4),
+                0 0 0 1px rgba(229, 9, 20, 0.3) !important;
+        }
+
+        /* Hover effects - no play icon needed */
+        .episode-btn:hover {
+            background: linear-gradient(145deg, rgba(35, 35, 35, 0.98), rgba(25, 25, 25, 0.99)) !important;
+            border-color: rgba(229, 9, 20, 0.6) !important;
+            transform: translateY(-8px) scale(1.02) !important;
+            box-shadow:
+                0 12px 40px rgba(229, 9, 20, 0.2),
+                0 8px 25px rgba(0, 0, 0, 0.4),
+                0 0 0 1px rgba(229, 9, 20, 0.3) !important;
+        }
+
+        /* Selected state */
+        .episode-btn.selected {
+            background: linear-gradient(145deg, rgba(229, 9, 20, 0.15), rgba(185, 7, 15, 0.2)) !important;
+            border-color: rgba(229, 9, 20, 0.8) !important;
+            box-shadow:
+                0 0 30px rgba(229, 9, 20, 0.4),
+                0 8px 25px rgba(0, 0, 0, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
+            transform: scale(1.03) !important;
+        }
+
+        /* Episode number badge */
+        .episode-number {
+            color: #E50914 !important;
+            font-weight: 700 !important;
+            font-size: 14px !important;
+            display: inline-block !important;
+            background: rgba(229, 9, 20, 0.15) !important;
+            padding: 4px 12px !important;
+            border-radius: 20px !important;
+            margin-bottom: 8px !important;
+            border: 1px solid rgba(229, 9, 20, 0.3) !important;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8) !important;
+            letter-spacing: 0.5px !important;
+            align-self: flex-start !important;
+        }
+
+        /* Episode title */
+        .episode-title {
+            color: white !important;
+            font-weight: 600 !important;
+            font-size: 16px !important;
+            display: block !important;
+            line-height: 1.4 !important;
+            margin-bottom: 8px !important;
+            overflow: hidden !important;
+            text-overflow: ellipsis !important;
+            display: -webkit-box !important;
+            -webkit-line-clamp: 2 !important;
+            line-clamp: 2 !important;
+            -webkit-box-orient: vertical !important;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8) !important;
+            letter-spacing: 0.3px !important;
+        }
+
+        /* Episode description */
+        .episode-description {
+            color: rgba(255, 255, 255, 0.8) !important;
+            font-size: 13px !important;
+            line-height: 1.4 !important;
+            margin-bottom: 12px !important;
+            overflow: hidden !important;
+            text-overflow: ellipsis !important;
+            display: -webkit-box !important;
+            -webkit-line-clamp: 3 !important;
+            line-clamp: 3 !important;
+            -webkit-box-orient: vertical !important;
+            font-weight: 400 !important;
+        }
+
+        /* Episode metadata container */
+        .episode-metadata {
+            display: flex !important;
+            align-items: center !important;
+            justify-content: space-between !important;
+            margin-top: auto !important;
+            flex-wrap: wrap !important;
+            gap: 8px !important;
+        }
+
+        /* Episode rating */
+        .episode-rating-badge {
+            display: flex !important;
+            align-items: center !important;
+            gap: 4px !important;
+            background: rgba(255, 193, 7, 0.15) !important;
+            color: #ffc107 !important;
+            padding: 3px 8px !important;
+            border-radius: 12px !important;
+            font-size: 12px !important;
+            font-weight: 600 !important;
+            border: 1px solid rgba(255, 193, 7, 0.3) !important;
+        }
+
+        .episode-rating-badge i {
+            font-size: 10px !important;
+        }
+
+        /* Episode runtime badge */
+        .episode-runtime {
+            color: rgba(255, 255, 255, 0.8) !important;
+            font-size: 12px !important;
+            display: inline-flex !important;
+            align-items: center !important;
+            gap: 4px !important;
+            background: rgba(0, 0, 0, 0.6) !important;
+            padding: 3px 8px !important;
+            border-radius: 12px !important;
+            font-weight: 500 !important;
+            border: 1px solid rgba(255, 255, 255, 0.1) !important;
+            backdrop-filter: blur(10px) !important;
+            -webkit-backdrop-filter: blur(10px) !important;
+        }
+
+        .episode-runtime i {
+            font-size: 10px !important;
+        }
+
+        /* Air date badge */
+        .episode-airdate {
+            color: rgba(255, 255, 255, 0.7) !important;
+            font-size: 11px !important;
+            display: inline-flex !important;
+            align-items: center !important;
+            gap: 4px !important;
+            background: rgba(0, 0, 0, 0.4) !important;
+            padding: 2px 6px !important;
+            border-radius: 8px !important;
+            font-weight: 400 !important;
+        }
+
+        .episode-airdate i {
+            font-size: 9px !important;
+        }
+
+        /* Play button pulse animation */
+        @keyframes pulse-play {
+
+            0%,
+            100% {
+                transform: scale(1.1) !important;
+                box-shadow: 0 4px 12px rgba(229, 9, 20, 0.4) !important;
+            }
+
+            50% {
+                transform: scale(1.2) !important;
+                box-shadow: 0 6px 20px rgba(229, 9, 20, 0.6) !important;
+            }
+        }
+
+        /* Now playing indicator */
+        .episode-btn.playing .episode-number::after {
+            content: '♪' !important;
+            margin-left: 8px !important;
+            animation: music-note 1.5s ease-in-out infinite !important;
+            color: #fff !important;
+        }
+
+        @keyframes music-note {
+
+            0%,
+            100% {
+                transform: translateY(0px) !important;
+            }
+
+            50% {
+                transform: translateY(-3px) !important;
+            }
+        }
+
+        /* Active episode glow effect */
+        .episode-btn.playing {
+            animation: episode-glow 3s ease-in-out infinite !important;
+        }
+
+        @keyframes episode-glow {
+
+            0%,
+            100% {
+                box-shadow:
+                    0 0 30px rgba(229, 9, 20, 0.4),
+                    0 8px 25px rgba(0, 0, 0, 0.3) !important;
+            }
+
+            50% {
+                box-shadow:
+                    0 0 40px rgba(229, 9, 20, 0.6),
+                    0 12px 35px rgba(0, 0, 0, 0.4) !important;
+            }
+        }
+
+        /* ENHANCED MOBILE OPTIMIZATIONS FOR DETAILED EPISODE CARDS */
+        @media (max-width: 480px) {
+            .modal-content {
+                max-width: 95vw !important;
+                max-height: 90vh !important;
+                margin: 0 !important;
+                border-radius: 20px !important;
+                border-width: 1px !important;
+            }
+
+            .modal-header,
+            .modal-body {
+                padding: 1.2rem !important;
+            }
+
+            .modal-header h3 {
+                font-size: 1.2rem !important;
+            }
+
+            /* Optimize season grid for small screens */
+            .season-grid {
+                grid-template-columns: repeat(2, 1fr) !important;
+                gap: 0.8rem !important;
+            }
+
+            .season-btn {
+                padding: 0.8rem 0.6rem !important;
+                font-size: 0.9rem !important;
+                min-height: 70px !important;
+            }
+
+            /* Single column for episodes on very small screens */
+            .episode-grid {
+                grid-template-columns: 1fr !important;
+                gap: 1rem !important;
+            }
+
+            .episode-btn {
+                min-height: 160px !important;
+                padding: 16px !important;
+            }
+
+            .episode-btn::before {
+                top: 12px !important;
+                right: 12px !important;
+                width: 28px !important;
+                height: 28px !important;
+                font-size: 10px !important;
+            }
+
+            .episode-title {
+                font-size: 14px !important;
+                -webkit-line-clamp: 2 !important;
+                line-clamp: 2 !important;
+            }
+
+            .episode-description {
+                font-size: 12px !important;
+                -webkit-line-clamp: 2 !important;
+                line-clamp: 2 !important;
+                margin-bottom: 8px !important;
+            }
+
+            .episode-number {
+                font-size: 12px !important;
+                padding: 3px 10px !important;
+            }
+
+            .episode-metadata {
+                flex-direction: column !important;
+                align-items: flex-start !important;
+                gap: 6px !important;
+            }
+
+            .episode-rating-badge,
+            .episode-runtime {
+                font-size: 10px !important;
+                padding: 2px 6px !important;
+            }
+
+            .episode-airdate {
+                font-size: 9px !important;
+                padding: 1px 4px !important;
+            }
+
+            .episode-select-btn {
+                padding: 1rem 1.5rem !important;
+                font-size: 1rem !important;
+                border-radius: 14px !important;
+            }
+        }
+
+        /* Medium mobile screens */
+        @media (min-width: 481px) and (max-width: 768px) {
+            .season-grid {
+                grid-template-columns: repeat(3, 1fr) !important;
+                gap: 1rem !important;
+            }
+
+            .episode-grid {
+                grid-template-columns: repeat(2, 1fr) !important;
+                gap: 1rem !important;
+            }
+
+            .episode-btn {
+                min-height: 170px !important;
+                padding: 18px !important;
+            }
+
+            .episode-description {
+                font-size: 12px !important;
+                -webkit-line-clamp: 2 !important;
+                line-clamp: 2 !important;
+            }
+
+            .episode-metadata {
+                flex-direction: column !important;
+                align-items: flex-start !important;
+                gap: 6px !important;
+            }
+        }
+
+        /* Larger mobile/tablet screens */
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .season-grid {
+                grid-template-columns: repeat(4, 1fr) !important;
+                gap: 1rem !important;
+            }
+
+            .episode-grid {
+                grid-template-columns: repeat(2, 1fr) !important;
+                gap: 1rem !important;
+            }
+
+            .episode-btn {
+                min-height: 180px !important;
+                padding: 20px !important;
+            }
+
+            .episode-description {
+                -webkit-line-clamp: 3 !important;
+                line-clamp: 3 !important;
+            }
+        }
+
+        /* Desktop and larger screens */
+        @media (min-width: 1025px) {
+            .episode-grid {
+                grid-template-columns: repeat(2, 1fr) !important;
+                gap: 1.2rem !important;
+            }
+
+            .episode-btn {
+                min-height: 200px !important;
+                padding: 24px !important;
+            }
+
+            .episode-btn::before {
+                top: 20px !important;
+                right: 20px !important;
+                width: 36px !important;
+                height: 36px !important;
+                font-size: 14px !important;
+            }
+
+            .episode-description {
+                -webkit-line-clamp: 3 !important;
+                line-clamp: 3 !important;
+            }
+        }
+
+        /* MOBILE BUTTON CONTAINER AND CENTERING */
+        .mobile-only {
+            display: block !important;
+            visibility: visible !important;
+            width: 100% !important;
+            max-width: 600px !important;
+            margin: 1.5rem auto !important;
+            padding: 0 1rem !important;
+        }
+
+        .episode-select-btn,
+        #episodeModalBtn {
+            background: linear-gradient(135deg, #1a1a1a, #2d2d2d) !important;
+            border: 2px solid rgba(229, 9, 20, 0.3) !important;
+            border-radius: 16px !important;
+            padding: 1.2rem 2rem !important;
+            color: white !important;
+            font-weight: 600 !important;
+            font-size: 1.1rem !important;
+            cursor: pointer !important;
+            transition: all 0.3s ease !important;
+            width: 100% !important;
+            margin: 0 auto !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            visibility: visible !important;
+            box-shadow:
+                0 8px 25px rgba(229, 9, 20, 0.2),
+                0 4px 15px rgba(0, 0, 0, 0.3) !important;
+            letter-spacing: 0.5px !important;
+            position: relative !important;
+            overflow: visible !important;
+            min-height: 70px !important;
+        }
+
+        /* Enhanced pulsing light effect around the button */
+        .episode-select-btn::after,
+        #episodeModalBtn::after {
+            content: '' !important;
+            position: absolute !important;
+            top: -5px !important;
+            left: -5px !important;
+            right: -5px !important;
+            bottom: -5px !important;
+            background: linear-gradient(45deg,
+                    rgba(229, 9, 20, 0.8),
+                    rgba(255, 26, 43, 0.6),
+                    rgba(229, 9, 20, 0.8),
+                    rgba(255, 26, 43, 0.6)) !important;
+            border-radius: 20px !important;
+            z-index: -1 !important;
+            animation: pulseGlow 2.5s ease-in-out infinite !important;
+            opacity: 0.8 !important;
+        }
+
+        @keyframes pulseGlow {
+
+            0%,
+            100% {
+                transform: scale(1) !important;
+                opacity: 0.6 !important;
+                filter: blur(3px) !important;
+                box-shadow: 0 0 20px rgba(229, 9, 20, 0.5) !important;
+            }
+
+            50% {
+                transform: scale(1.08) !important;
+                opacity: 1 !important;
+                filter: blur(6px) !important;
+                box-shadow: 0 0 30px rgba(229, 9, 20, 0.8) !important;
+            }
+        }
+
+        .episode-select-btn i {
+            color: #e50914 !important;
+            font-size: 1.2rem !important;
+            margin-right: 0.5rem !important;
+            transition: all 0.3s ease !important;
+        }
+
+        /* Subtle hint text styling */
+        .episode-select-btn span[style*="opacity"] {
+            color: rgba(255, 255, 255, 0.6) !important;
+            text-transform: none !important;
+            transition: opacity 0.3s ease !important;
+        }
+
+        .episode-select-btn::before {
+            content: '' !important;
+            position: absolute !important;
+            top: 0 !important;
+            left: -100% !important;
+            width: 100% !important;
+            height: 100% !important;
+            background: linear-gradient(90deg, transparent, rgba(229, 9, 20, 0.1), transparent) !important;
+            transition: left 0.5s ease !important;
+            z-index: 1 !important;
+        }
+
+        .episode-select-btn:hover::before {
+            left: 100% !important;
+        }
+
+        .episode-select-btn:hover {
+            transform: translateY(-3px) scale(1.02) !important;
+            border-color: rgba(229, 9, 20, 0.6) !important;
+            background: linear-gradient(135deg, #2d2d2d, #1a1a1a) !important;
+            box-shadow:
+                0 12px 35px rgba(229, 9, 20, 0.3),
+                0 6px 20px rgba(0, 0, 0, 0.4) !important;
+        }
+
+        .episode-select-btn:hover::after {
+            animation: pulseGlowHover 1.5s ease-in-out infinite !important;
+        }
+
+        @keyframes pulseGlowHover {
+
+            0%,
+            100% {
+                transform: scale(1.02) !important;
+                opacity: 0.8 !important;
+                filter: blur(3px) !important;
+            }
+
+            50% {
+                transform: scale(1.08) !important;
+                opacity: 1 !important;
+                filter: blur(6px) !important;
+            }
+        }
+
+        .episode-select-btn:hover i {
+            color: #ff1a2b !important;
+            transform: scale(1.1) !important;
+        }
+
+        .episode-select-btn:hover span[style*="opacity"] {
+            opacity: 0.9 !important;
+            color: rgba(255, 255, 255, 0.8) !important;
+        }
+
+        .episode-select-btn:active {
+            transform: translateY(-1px) scale(0.98) !important;
+        }
+
+        /* TAILWIND OVERRIDE - FORCE HIDDEN CLASS BEHAVIOR */
+        .hidden {
+            display: none !important;
+            opacity: 0 !important;
+            visibility: hidden !important;
+        }
+
+        /* ANTI-TAILWIND: Ensure modal is visible when NOT hidden */
+        .episode-modal:not(.hidden) {
+            display: flex !important;
+            opacity: 1 !important;
+            visibility: visible !important;
+        }
+
+        .episode-modal:not(.hidden) * {
+            visibility: visible !important;
+            opacity: 1 !important;
+        }
+    </style>
+</head>
+
+<body class="bg-netflix-black text-white min-h-screen">
+    <!-- Background Backdrop -->
+    <div class="background fixed inset-0 bg-cover bg-center bg-no-repeat"></div>
+    <div class="fixed inset-0 bg-netflix-black/70"></div>
+
+    <!-- Navigation -->
+    <header class="navbar-glass fixed top-0 w-full z-50 transition-all duration-500" id="navbar">
+        <div
+            class="relative z-10 flex flex-col lg:flex-row items-center justify-between px-4 lg:px-16 py-4 space-y-4 lg:space-y-0">
+            <!-- Logo and Desktop Navigation -->
+            <div class="flex flex-col lg:flex-row items-center space-y-4 lg:space-y-0 lg:space-x-8 w-full lg:w-auto">
+                <h1 class="text-netflix-red text-2xl lg:text-3xl font-bold cursor-pointer hover:text-white transition-colors text-center lg:text-left flex items-center"
+                    onclick="home()">
+                    <img src="src/assets/logo.png" alt="MovieIGuess Logo"
+                        class="w-8 h-8 lg:w-10 lg:h-10 mr-2 object-contain">MovieIGuess
+                </h1>
+                <!-- Desktop Navigation -->
+                <nav class="hidden lg:flex space-x-6">
+                    <a href="index.html" class="text-white hover:text-gray-300 transition-colors">Home</a>
+                    <a href="#" class="text-white hover:text-gray-300 transition-colors"
+                        onclick="showDevToast('Movie List')">Movies</a>
+                    <a href="#" class="text-white hover:text-gray-300 transition-colors"
+                        onclick="showDevToast('TV Show List')">TV Shows</a>
+                    <a href="#" class="text-white hover:text-gray-300 transition-colors"
+                        onclick="showDevToast('My List')">My List</a>
+                </nav>
+            </div>
+
+            <!-- Search Bar -->
+            <div class="flex items-center space-x-4 w-full lg:w-auto justify-center lg:justify-end">
+                <div class="relative w-full max-w-md lg:w-64">
+                    <input type="text" placeholder="Search a movie/series"
+                        class="search-input text-white placeholder-gray-400 rounded-md px-4 py-2 w-full focus:outline-none focus:ring-2 focus:ring-netflix-red focus:border-transparent transition-all">
+                    <i
+                        class="fa-solid fa-magnifying-glass absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 text-xs cursor-pointer hover:text-white transition-colors"></i>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="relative z-10 pt-24 min-h-screen">
+        <!-- Loading State -->
+        <div id="loading" class="flex items-center justify-center min-h-screen">
+            <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-netflix-red"></div>
+        </div>
+
+        <!-- Movie/TV Content Container -->
+        <div class="container hidden max-w-7xl mx-auto px-4 lg:px-8 pb-20">
+            <!-- Content will be populated by JavaScript -->
+        </div>
+
+        <!-- Error State -->
+        <div id="error" class="hidden flex items-center justify-center min-h-screen">
+            <div class="text-center">
+                <i class="fa-solid fa-exclamation-triangle text-6xl text-netflix-red mb-4"></i>
+                <h2 class="text-2xl font-bold text-white mb-2">Something went wrong</h2>
+                <p class="text-gray-400 mb-6">Unable to load the content. Please try again later.</p>
+                <button onclick="window.location.reload()"
+                    class="bg-netflix-red text-white px-6 py-3 rounded-lg hover:bg-red-700 transition-colors">
+                    Try Again
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Search Modal -->
+    <div id="searchModal" class="search-modal-overlay hidden">
+        <div class="search-modal-card">
+            <!-- Close Button -->
+            <button id="searchCloseBtn" class="modal-back-button">
+                <i class="fa-solid fa-times"></i>
+            </button>
+
+            <!-- Search Header -->
+            <div class="search-header">
+                <h2 id="searchResultsTitle">Search Results</h2>
+                <div class="search-filters">
+                    <button class="filter-btn active" data-type="all">All</button>
+                    <button class="filter-btn" data-type="movie">Movies</button>
+                    <button class="filter-btn" data-type="tv">TV Shows</button>
+                    <button class="filter-btn" data-type="person">People</button>
+                </div>
+            </div>
+
+            <!-- Search Results Container -->
+            <div id="searchResultsContainer" class="search-results-container">
+                <div class="loading">Loading...</div>
+            </div>
+
+            <!-- Pagination Container -->
+            <div id="searchPaginationContainer" class="pagination-container"></div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="relative z-10 bg-netflix-dark mt-20 py-16">
+        <div class="px-4 lg:px-16">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div class="col-span-1 md:col-span-2">
+                    <h3 class="text-netflix-red text-2xl font-bold mb-4">MovieIGuess</h3>
+                    <p class="text-gray-400 mb-6 max-w-md">
+                        Your ultimate destination for discovering amazing movies and TV shows.
+                        Stream, watch, and enjoy entertainment like never before.
+                    </p>
+                </div>
+
+                <div>
+                    <h4 class="text-white font-semibold mb-4">Quick Links</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="index.html" class="hover:text-white transition-colors">Home</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors"
+                                onclick="showDevToast('Movie List')">Movie List</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors"
+                                onclick="showDevToast('TV Show List')">TV Show List</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors" onclick="showDevToast('My List')">My
+                                List</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-white font-semibold mb-4">Connect With Us</h4>
+                    <div class="flex space-x-4">
+                        <a href="#" onclick="ins()" class="text-gray-400 hover:text-netflix-red transition-colors">
+                            <i class="fa-brands fa-instagram text-2xl"></i>
+                        </a>
+                        <a href="#" onclick="lin()" class="text-gray-400 hover:text-netflix-red transition-colors">
+                            <i class="fa-brands fa-linkedin-in text-2xl"></i>
+                        </a>
+                        <a href="#" onclick="git()" class="text-gray-400 hover:text-netflix-red transition-colors">
+                            <i class="fa-brands fa-github text-2xl"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-700 mt-12 pt-8 text-center">
+                <p class="text-gray-400">&copy; 2024 MovieIGuess. All rights reserved. | Privacy Policy | Terms of
+                    Service</p>
+            </div>
+        </div>
+    </footer>
+    <script>
+        // Navbar glassmorphism scroll effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 100) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        function ins() { window.open('https://www.instagram.com/unkown-user/', '_blank'); }
+        function lin() { window.open('https://www.linkedin.com/in/christian-signo-070733323/', '_blank') }
+        function git() { window.open('https://github.com/Xtian69420', '_blank') }
+
+        function home() {
+            window.location.href = "index.html";
+        }
+    </script>
+    <!-- Popup Protector Script -->
+    <script>
+        (function () {
+            // Block window.open
+            const originalOpen = window.open;
+            window.open = function () {
+                console.log('Popup blocked by MovieIGuess Protector');
+                return null;
+            };
+
+            // Intercept common ad-triggering events
+            document.addEventListener('mousedown', function (e) {
+                // If it's a right click or middle click, we might want to be more careful, 
+                // but usually ad scripts hook into any click.
+                if (e.target.closest('#video-player')) {
+                    console.log('Interaction with player detected');
+                }
+            }, true);
+
+            // Periodically check for rogue iframes or windows
+            setInterval(() => {
+                const iframes = document.getElementsByTagName('iframe');
+                for (let i = 0; i < iframes.length; i++) {
+                    if (iframes[i].id !== 'video-player' && !iframes[i].src.includes('theajack.github.io')) {
+                        console.log('Removing potentially unwanted iframe');
+                        // iframes[i].remove(); // Be careful with this, might break some UI components
+                    }
+                }
+            }, 2000);
+        })();
+    </script>
+    <script src="src/watch.js"></script>
+    <script src="https://theajack.github.io/disable-devtool/cordClip"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="src/search.js"></script>
+
+    <!-- Toast Script -->
+    <script src="src/toast.js"></script>
+    <script>
+        // Development toast function
+        function showDevToast(feature) {
+            showInfo(`${feature} feature is currently in development. Stay tuned for updates!`, {
+                title: '🚧 Coming Soon :PP',
+                duration: 5000
+            });
+        }
+    </script>
+</body>
+
+</html>

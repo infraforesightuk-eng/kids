@@ -1,0 +1,469 @@
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+}
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #300d28;
+    min-width: 300px;
+}
+
+.nav{
+    display: grid;
+    grid-template-columns: 1fr 30% 5%;
+    padding: 10px;
+    padding-left: 75px;
+    padding-right: 75px;
+    justify-content: center;
+    background-color: #14080e;
+    margin-bottom: 20px;
+}
+
+input{
+    grid-row: 1;
+    grid-column: 2;
+    width: 90%;
+    height: 80%;
+    align-self: center;
+    justify-self: center;
+    border: none;
+    border-radius: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-size: 18px;
+}
+
+.fa-magnifying-glass{
+    grid-row: 1;
+    grid-column: 3;
+    font-size: 34px;
+    color: #c1c1c1;
+    align-self: center;
+    justify-self: center;
+    cursor: pointer;
+}
+
+.title{
+    grid-row: 1;
+    grid-column: 1;
+    color: #c1c1c1;
+    font-size: 28px;
+    text-align: start;
+    font-weight: 800;
+    cursor: pointer;
+}
+
+.movie-card {
+    background: linear-gradient(to right, rgb(118, 41, 41), rgb(16, 4, 59));
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    width: 300px;
+    text-align: center;
+    border-radius: 30px;
+    cursor: pointer;
+    animation-duration: 1s all;
+}
+
+.movie-card:hover .movie-poster {
+    transform: scale(1.0); /* Remove individual scaling since card scales as whole */
+    transition: transform 0.3s ease-in-out;
+}
+
+.movie-poster {
+    width: 100%;
+    height: 400px; /* Fixed height for background */
+    position: relative;
+    z-index: 1;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.movie-card {
+    padding-bottom: 20px; 
+    position: relative;
+    overflow: hidden; 
+}
+
+.movie-title {
+    font-size: 1.5em;
+    margin: 10px 0;
+    color: #ffffff;
+}
+
+.movie-overview {
+    font-size: 0.9em;
+    color: #c1c1c1;
+    padding: 0 10px;
+    margin-bottom: 10px;
+}
+
+.movie-release-date,
+.movie-rating {
+    font-size: 0.9em;
+    margin: 5px 0;
+    color: #c1c1c1;
+}
+
+<!--series-->
+.series-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    padding: 20px;
+}
+
+.series-card {
+    background: linear-gradient(to right, rgb(118, 41, 41), rgb(16, 4, 59));
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    width: 300px;
+    text-align: center;
+    border-radius: 30px;
+    cursor: pointer;
+    animation-duration: 1s all;
+}
+
+.series-card:hover .series-poster {
+    transform: scale(1.0); /* Remove individual scaling since card scales as whole */
+    transition: transform 0.3s ease-in-out;
+}
+
+.series-poster {
+    width: 100%;
+    height: 400px; /* Fixed height for background */
+    position: relative;
+    z-index: 1;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.series-card {
+    padding-bottom: 20px; 
+    position: relative;
+    overflow: hidden; 
+}
+
+.series-title {
+    font-size: 1.5em;
+    margin: 10px 0;
+    color: #ffffff;
+}
+
+.series-overview {
+    font-size: 0.9em;
+    color: #c1c1c1;
+    padding: 0 10px;
+    margin-bottom: 10px;
+}
+
+.series-release-date,
+.series-rating {
+    font-size: 0.9em;
+    margin: 5px 0;
+    color: #c1c1c1;
+}
+
+
+.anime-card {
+    background: linear-gradient(to right, rgb(118, 41, 41), rgb(16, 4, 59));
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    width: 300px;
+    text-align: center;
+    border-radius: 30px;
+    cursor: pointer;
+    animation-duration: 1s all;
+}
+
+.anime-card:hover .anime-poster {
+    transform: scale(1.0); /* Remove individual scaling since card scales as whole */
+    transition: transform 0.3s ease-in-out;
+}
+
+.anime-poster {
+    width: 100%;
+    height: 400px; /* Fixed height for background */
+    position: relative;
+    z-index: 1;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.anime-card {
+    padding-bottom: 20px; 
+    position: relative;
+    overflow: hidden; 
+}
+
+.anime-title {
+    font-size: 1.5em;
+    margin: 10px 0;
+    color: #ffffff;
+}
+
+.anime-overview {
+    font-size: 0.9em;
+    color: #c1c1c1;
+    padding: 0 10px;
+    margin-bottom: 10px;
+}
+
+.anime-release-date,
+.anime-rating {
+    font-size: 0.9em;
+    margin: 5px 0;
+    color: #c1c1c1;
+}
+
+footer{
+    padding: 10px;
+    padding-left: 130px;
+    padding-right: 130px;
+    justify-content: center;
+    background-color: #14080e;
+}
+
+i{
+    color: #c1c1c1;
+    cursor: pointer;
+}
+
+.contanctInfos{
+    display: grid;
+    grid-template-columns: 20% 20% 20%;
+    justify-content: center;
+    margin: 0 auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.fa-instagram{font-size: 50px; text-align: center;}
+.fa-linkedin-in{font-size: 50px; text-align: center;}
+.fa-github{font-size: 50px; text-align: center;}
+
+.textCategory{
+    color: #c1c1c1;
+    font-size: 55px;
+    font-weight: 700;
+    margin-left: 5%;
+}
+.backdrop-container {
+    width: 100%;
+    height: 400px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 20px;
+    margin-left: 10px;
+    margin-right: 10px;
+    width: 90%;
+    justify-self: center;
+}
+
+.backdrop-slider {
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    transition: opacity 1s ease-in-out;
+}
+
+.backdrop-container::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.textCategory,
+.movie-container {
+    position: relative;
+    z-index: 2;
+}
+
+.scroll-wrapper {
+    overflow: hidden;
+    margin: 20px 75px; 
+}
+
+.movie-container,
+.series-container,
+.anime-container{
+    display: flex;
+    flex-wrap: nowrap;           
+    overflow-x: auto;
+    overflow-y: hidden;            
+    gap: 20px;
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: smooth;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+}
+
+/* Hide webkit scrollbar */
+.movie-container::-webkit-scrollbar,
+.series-container::-webkit-scrollbar,
+.anime-container::-webkit-scrollbar {
+    display: none;
+}
+
+.movie-card,
+.series-card,
+.anime-card {
+    flex: 0 0 auto;
+    width: 300px;
+    scroll-snap-align: start;
+}
+
+
+@media screen and (max-width:600px) {
+    .scroll-wrapper {
+        overflow: hidden;
+        margin: 0 20px; 
+    }
+
+    .backdrop-container {
+        height: 250px;
+    }
+    .body{
+        min-width: 300px;
+    }
+    .nav {
+        display: grid !important;
+        grid-template-columns: 1fr !important;
+        grid-template-rows: 1fr 1fr !important;
+        padding: 0;
+        padding: 20px 40px;
+    }
+
+    .title {
+        grid-column: 1 !important; 
+        grid-row: 1 !important;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    input {
+        grid-column: 1 !important; 
+        grid-row: 2 !important;
+        justify-self: center; 
+        width: 100%;
+    }
+    .textCategory{
+        color: #c1c1c1;
+        font-size: 55px;
+        font-weight: 700;
+        margin-left: 0;
+        text-align: center;
+    }
+    .fa-magnifying-glass {
+        display: none !important;
+    }
+    .movie-card {
+        background: linear-gradient(to right, rgb(118, 41, 41), rgb(16, 4, 59));
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        width: 150px;
+        text-align: center;
+        border-radius: 30px;
+        cursor: pointer;
+        animation-duration: 1s all;
+    }
+    .movie-overview {
+        display: none;
+    }
+
+    .movie-title {
+        font-size: 14px;
+        margin: 10px 0;
+        color: #ffffff;
+    }
+
+    .movie-release-date{
+        font-size: 12px;
+        display: none;
+    }
+
+    .series-card {
+        background: linear-gradient(to right, rgb(118, 41, 41), rgb(16, 4, 59));
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        width: 150px;
+        text-align: center;
+        border-radius: 30px;
+        cursor: pointer;
+        animation-duration: 1s all;
+    }
+    .series-overview {
+        display: none;
+    }
+
+    .series-title {
+        font-size: 14px;
+        margin: 10px 0;
+        color: #ffffff;
+    }
+
+    .series-release-date{
+        font-size: 12px;
+        display: none;
+    }
+
+    .anime-card {
+        background: linear-gradient(to right, rgb(118, 41, 41), rgb(16, 4, 59));
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        width: 150px;
+        text-align: center;
+        border-radius: 30px;
+        cursor: pointer;
+        animation-duration: 1s all;
+    }
+    .anime-overview {
+        display: none;
+    }
+
+    .anime-title {
+        font-size: 14px;
+        margin: 10px 0;
+        color: #ffffff;
+    }
+
+    .anime-release-date{
+        font-size: 12px;
+        display: none;
+    }
+
+    footer{
+        margin-top: 20px;
+        padding: 20px;
+        justify-content: center;
+        background-color: #14080e;
+    }
+}
+
+.backdrop-slider {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    transition: opacity 1s ease;
+    opacity: 1;
+}

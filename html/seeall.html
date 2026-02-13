@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="light only">
+    <meta name="supported-color-schemes" content="light">
+    <meta name="theme-color" content="#000000">
+    
+    <title>MovieIGuess - Explore All</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="netflix-style.css">
+    <link rel="stylesheet" href="search.css">
+    <link rel="stylesheet" href="toast.css">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://kit.fontawesome.com/22dc8d85a3.js" crossorigin="anonymous"></script>
+    <link rel="icon" href="src/assets/logo.png">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'netflix-red': '#E50914',
+                        'netflix-black': '#000000',
+                        'netflix-dark': '#141414',
+                        'netflix-gray': '#333333',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        :root {
+            color-scheme: light only !important;
+        }
+        body {
+            background-color: #000000 !important;
+            color: #ffffff !important;
+        }
+        .see-all-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 1.5rem;
+        }
+        @media (max-width: 640px) {
+            .see-all-grid {
+                grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body class="bg-netflix-black text-white min-h-screen">
+    <!-- Navigation -->
+    <header class="navbar-glass fixed top-0 w-full z-50 transition-all duration-500" id="navbar">
+        <div class="relative z-10 flex items-center justify-between px-4 lg:px-16 py-4">
+            <h1 class="text-netflix-red text-2xl lg:text-3xl font-bold cursor-pointer hover:text-white transition-colors flex items-center" onclick="home()">
+                <img src="src/assets/logo.png" alt="MovieIGuess Logo" class="w-8 h-8 lg:w-10 lg:h-10 mr-2 object-contain">MovieIGuess
+            </h1>
+            
+            <div class="flex items-center space-x-4">
+                <button onclick="home()" class="text-white hover:text-netflix-red transition-colors flex items-center">
+                    <i class="fa-solid fa-arrow-left mr-2"></i> Back to Home
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="pt-24 px-4 lg:px-16 pb-20">
+        <div class="flex flex-col mb-8">
+            <h2 id="categoryTitle" class="text-3xl lg:text-4xl font-bold mb-2">Category Name</h2>
+            <div class="h-1 w-20 bg-netflix-red rounded-full"></div>
+        </div>
+
+        <!-- Grid Container -->
+        <div id="seeAllGrid" class="see-all-grid">
+            <!-- Content will be populated here -->
+        </div>
+
+        <!-- Loading Spinner -->
+        <div id="loading" class="flex justify-center items-center py-10">
+            <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-netflix-red"></div>
+        </div>
+
+        <!-- Load More Button -->
+        <div id="loadMoreContainer" class="flex justify-center mt-12 hidden">
+            <button id="loadMoreBtn" class="bg-netflix-red text-white px-8 py-3 rounded-md font-semibold hover:bg-red-700 transition-colors">
+                Load More
+            </button>
+        </div>
+    </main>
+
+    <!-- Modal for Movie Details (Reusing logic from home.js) -->
+    <div id="movieModal" class="fixed inset-0 z-[100] hidden flex items-center justify-center p-4">
+        <div class="fixed inset-0 bg-black/80 transition-opacity" onclick="closeModal()"></div>
+        <div class="modal-content relative bg-netflix-dark w-full max-w-4xl max-h-[90vh] overflow-y-auto rounded-lg shadow-2xl custom-scrollbar">
+            <!-- Modal header with image -->
+            <div class="relative h-64 sm:h-96">
+                <img id="modalBackdrop" src="" alt="" class="w-full h-full object-cover">
+                <div class="absolute inset-0 bg-gradient-to-t from-netflix-dark via-transparent to-transparent"></div>
+                <button onclick="closeModal()" class="absolute top-4 right-4 bg-black/50 hover:bg-black/75 text-white p-2 rounded-full transition-colors">
+                    <i class="fa-solid fa-times text-xl"></i>
+                </button>
+            </div>
+            
+            <div class="p-6 lg:p-10">
+                <div class="flex flex-col lg:flex-row gap-8">
+                    <div class="w-48 flex-shrink-0 hidden lg:block">
+                        <img id="modalPoster" src="" alt="" class="w-full rounded-lg shadow-xl">
+                    </div>
+                    <div class="flex-1 text-white">
+                        <h2 id="modalTitle" class="text-3xl lg:text-5xl font-bold mb-4"></h2>
+                        <div class="flex flex-wrap items-center gap-4 mb-6 text-gray-400">
+                            <span id="modalRating" class="flex items-center text-yellow-500 font-bold">
+                                <i class="fa-solid fa-star mr-1"></i>
+                                <span></span>
+                            </span>
+                            <span id="modalYear"></span>
+                            <span id="modalRuntime"></span>
+                        </div>
+                        <p id="modalOverview" class="text-gray-300 text-lg leading-relaxed mb-8"></p>
+                        
+                        <div class="flex gap-4">
+                            <button id="modalPlayBtn" class="bg-white text-black px-8 py-3 rounded font-bold hover:bg-gray-200 transition-colors flex items-center">
+                                <i class="fa-solid fa-play mr-2"></i> Play Now
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Search Modal (Placeholder to prevent errors if search.js expects it) -->
+    <div id="searchModal" class="hidden"></div>
+
+    <script src="src/see-all.js"></script>
+    <script>
+        function home() { window.location.href = 'index.html'; }
+    </script>
+</body>
+</html>
