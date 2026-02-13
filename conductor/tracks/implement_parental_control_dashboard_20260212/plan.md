@@ -1,6 +1,6 @@
 # Plan for Implementing Parental Control Dashboard
 
-## Phase 1: Database and Backend API for Child Profiles and Whitelisting
+## Phase 1: Database and Backend API for Child Profiles and Whitelisting [checkpoint: 7a756ea]
 - [x] Task: Design database schema for child profiles, content whitelists, and time limits. [b043aa0]
     - [x] Task: Write tests for database schema design.
     - [x] Task: Implement database schema design. [34f11b4]
@@ -15,7 +15,7 @@
     - [x] Task: Implement addContentToWhitelist. [404330c]
     - [x] Task: Implement getWhitelistByProfileId. [1b2374e]
     - [x] Task: Implement removeContentFromWhitelist. [326b183]
-- [ ] Task: Conductor - User Manual Verification 'Phase 1: Database and Backend API for Child Profiles and Whitelisting' (Protocol in workflow.md)
+- [x] Task: Conductor - User Manual Verification 'Phase 1: Database and Backend API for Child Profiles and Whitelisting' (Protocol in workflow.md) [7a756ea]
 
 ## Phase 2: Frontend Development for Child Profile Management
 - [ ] Task: Develop UI for creating and managing child profiles.
