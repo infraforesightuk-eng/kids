@@ -18,8 +18,8 @@
 - [x] Task: Conductor - User Manual Verification 'Phase 1: Database and Backend API for Child Profiles and Whitelisting' (Protocol in workflow.md) [7a756ea]
 
 ## Phase 2: Frontend Development for Child Profile Management
-- [ ] Task: Develop UI for creating and managing child profiles.
-    - [ ] Task: Write tests for child profile UI components.
+- [~] Task: Develop UI for creating and managing child profiles.
+    - [~] Task: Write tests for child profile UI components.
     - [ ] Task: Implement child profile UI components.
 - [ ] Task: Integrate child profile UI with backend API.
     - [ ] Task: Write tests for child profile UI integration.
