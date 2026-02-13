@@ -17,7 +17,7 @@
     - [x] Task: Implement removeContentFromWhitelist. [326b183]
 - [x] Task: Conductor - User Manual Verification 'Phase 1: Database and Backend API for Child Profiles and Whitelisting' (Protocol in workflow.md) [7a756ea]
 
-## Phase 2: Frontend Development for Child Profile Management
+## Phase 2: Frontend Development for Child Profile Management [checkpoint: 6e42490]
 - [x] Task: Develop UI for creating and managing child profiles. [2224426]
     - [x] Task: Write tests for child profile UI components. [345485e]
     - [x] Task: Implement child profile UI components. [2224426]
@@ -30,7 +30,7 @@
 - [x] Task: Integrate content whitelisting UI with backend API. [4a2961e]
     - [x] Task: Write tests for content whitelisting UI integration. [fa6bdb1]
     - [x] Task: Implement content whitelisting UI integration. [4a2961e]
-- [ ] Task: Conductor - User Manual Verification 'Phase 2: Frontend Development for Child Profile Management' (Protocol in workflow.md)
+- [x] Task: Conductor - User Manual Verification 'Phase 2: Frontend Development for Child Profile Management' (Protocol in workflow.md) [6e42490]
 
 ## Phase 3: Time Limit and Activity Monitoring Features
 - [ ] Task: Implement API endpoints for setting and managing time limits.
