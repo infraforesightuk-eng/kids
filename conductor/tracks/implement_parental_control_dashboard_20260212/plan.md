@@ -27,9 +27,9 @@
 - [x] Task: Develop UI for content whitelisting. [4a2961e]
     - [x] Task: Write tests for content whitelisting UI components. [fa6bdb1]
     - [x] Task: Implement content whitelisting UI components. [4a2961e]
-- [ ] Task: Integrate content whitelisting UI with backend API.
-    - [ ] Task: Write tests for content whitelisting UI integration.
-    - [ ] Task: Implement content whitelisting UI integration.
+- [x] Task: Integrate content whitelisting UI with backend API. [4a2961e]
+    - [x] Task: Write tests for content whitelisting UI integration. [fa6bdb1]
+    - [x] Task: Implement content whitelisting UI integration. [4a2961e]
 - [ ] Task: Conductor - User Manual Verification 'Phase 2: Frontend Development for Child Profile Management' (Protocol in workflow.md)
 
 ## Phase 3: Time Limit and Activity Monitoring Features
