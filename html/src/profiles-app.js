@@ -178,7 +178,12 @@ class ProfilesApp {
   }
 }
 
-// Initialize app when DOM is ready
-document.addEventListener('DOMContentLoaded', () => {
-  new ProfilesApp();
-});
+// Export for testing
+export default ProfilesApp;
+
+// Initialize app when DOM is ready (only in browser, not in tests)
+if (typeof window !== 'undefined' && typeof document !== 'undefined') {
+  document.addEventListener('DOMContentLoaded', () => {
+    new ProfilesApp();
+  });
+}
