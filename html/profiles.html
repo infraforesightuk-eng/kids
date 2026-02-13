@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Manage Profiles - movieIguess</title>
+  <link rel="stylesheet" href="profiles.css">
+  <link rel="stylesheet" href="toast.css">
+</head>
+<body>
+  <div class="container">
+    <header class="profiles-header">
+      <h1>👨‍👩‍👧‍👦 Manage Profiles</h1>
+      <p class="subtitle">Create and manage child profiles</p>
+    </header>
+
+    <div class="profiles-actions">
+      <button id="btn-new-profile" class="btn-primary">
+        ➕ Create New Profile
+      </button>
+      <button id="btn-back" class="btn-secondary">
+        ⬅️ Back to Home
+      </button>
+    </div>
+
+    <div id="profiles-container" class="profiles-container">
+      <!-- ProfileManager will render content here -->
+    </div>
+  </div>
+
+  <script type="module" src="src/toast.js"></script>
+  <script type="module" src="src/profiles-app.js"></script>
+</body>
+</html>

@@ -24,6 +24,15 @@ const createApp = (dbPath) => {
   });
 
   // Profiles API
+  app.get('/api/profiles', async (req, res) => {
+    try {
+      const profiles = await req.profileService.getAllProfiles();
+      res.json(profiles);
+    } catch (error) {
+      res.status(500).json({ error: error.message });
+    }
+  });
+
   app.post('/api/profiles', async (req, res) => {
     try {
       const { name, avatar, pin } = req.body;

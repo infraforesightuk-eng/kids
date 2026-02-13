@@ -100,4 +100,22 @@ describe('Profile Service', () => {
     const dbProfile = await db.get('SELECT * FROM Profile WHERE id = ?', createdProfile.id);
     expect(dbProfile).toBeUndefined();
   });
+
+  it('should retrieve all profiles', async () => {
+    // Clean database first
+    await db.run('DELETE FROM Profile');
+
+    // Create multiple profiles
+    await profileService.createProfile('Profile 1', '👧', '1111');
+    await profileService.createProfile('Profile 2', '👦', '2222');
+    await profileService.createProfile('Profile 3', '🧒', '3333');
+
+    const allProfiles = await profileService.getAllProfiles();
+    expect(allProfiles).toBeDefined();
+    expect(allProfiles.length).toBe(3);
+    // Ordered by createdAt DESC (newest first)
+    expect(allProfiles[0].name).toBe('Profile 3');
+    expect(allProfiles[1].name).toBe('Profile 2');
+    expect(allProfiles[2].name).toBe('Profile 1');
+  });
 });

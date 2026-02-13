@@ -40,6 +40,11 @@ class ProfileService {
     return profile;
   }
 
+  async getAllProfiles() {
+    const profiles = await this.db.all('SELECT * FROM Profile ORDER BY createdAt DESC');
+    return profiles;
+  }
+
   async updateProfile(id, name, avatar, pin = null) {
     const updatedAt = new Date().toISOString();
     await this.db.run(
