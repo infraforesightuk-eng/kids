@@ -21,8 +21,8 @@
 - [x] Task: Develop UI for creating and managing child profiles. [2224426]
     - [x] Task: Write tests for child profile UI components. [345485e]
     - [x] Task: Implement child profile UI components. [2224426]
-- [ ] Task: Integrate child profile UI with backend API.
-    - [ ] Task: Write tests for child profile UI integration.
+- [~] Task: Integrate child profile UI with backend API.
+    - [~] Task: Write tests for child profile UI integration.
     - [ ] Task: Implement child profile UI integration.
 - [ ] Task: Develop UI for content whitelisting.
     - [ ] Task: Write tests for content whitelisting UI components.
