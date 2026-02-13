@@ -3,11 +3,11 @@ import sqlite3 from 'sqlite3';
 import { open } from 'sqlite';
 import path from 'path';
 import fs from 'fs';
-import { v4 as uuidv4 } from 'uuid'; // For generating UUIDs for IDs
+import { v4 as uuidv4 } from 'uuid';
 
 describe('Database Schema', () => {
   let db;
-  const dbPath = path.resolve(process.cwd(), 'test.db');
+  const dbPath = path.resolve(process.cwd(), 'test-schema.db'); // Unique DB for schema tests
 
   beforeAll(async () => {
     // Clean up previous test database if it exists
@@ -21,44 +21,9 @@ describe('Database Schema', () => {
       driver: sqlite3.Database,
     });
 
-    // Define schema using SQL
-    await db.exec(`
-      CREATE TABLE IF NOT EXISTS Profile (
-        id TEXT PRIMARY KEY,
-        name TEXT NOT NULL,
-        avatar TEXT,
-        pin TEXT,
-        createdAt TEXT DEFAULT CURRENT_TIMESTAMP,
-        updatedAt TEXT DEFAULT CURRENT_TIMESTAMP
-      );
-
-      CREATE TABLE IF NOT EXISTS Whitelist (
-        id TEXT PRIMARY KEY,
-        profileId TEXT NOT NULL,
-        tmdbId TEXT NOT NULL,
-        mediaType TEXT NOT NULL,
-        addedAt TEXT DEFAULT CURRENT_TIMESTAMP,
-        UNIQUE(profileId, tmdbId, mediaType),
-        FOREIGN KEY(profileId) REFERENCES Profile(id) ON DELETE CASCADE
-      );
-
-      CREATE TABLE IF NOT EXISTS TimeLimit (
-        id TEXT PRIMARY KEY,
-        profileId TEXT NOT NULL UNIQUE,
-        dailyLimitMinutes INTEGER NOT NULL,
-        updatedAt TEXT DEFAULT CURRENT_TIMESTAMP,
-        FOREIGN KEY(profileId) REFERENCES Profile(id) ON DELETE CASCADE
-      );
-
-      CREATE TABLE IF NOT EXISTS ActivityLog (
-        id TEXT PRIMARY KEY,
-        profileId TEXT NOT NULL,
-        tmdbId TEXT NOT NULL,
-        mediaType TEXT NOT NULL,
-        watchedAt TEXT DEFAULT CURRENT_TIMESTAMP,
-        FOREIGN KEY(profileId) REFERENCES Profile(id) ON DELETE CASCADE
-      );
-    `);
+    // Read and apply schema from schema.sql
+    const schemaSql = fs.readFileSync(path.resolve(__dirname, './db/schema.sql'), 'utf8');
+    await db.exec(schemaSql);
   });
 
   afterAll(async () => {
