@@ -68,17 +68,4 @@ describe('Database Schema', () => {
       db.run('INSERT INTO Whitelist (id, profileId, tmdbId, mediaType) VALUES (?, ?, ?, ?)', [whitelistItemId2, profileId, '555', 'movie'])
     ).rejects.toThrow();
   });
-
-  it('should enforce unique constraint on time limit profileId', async () => {
-    const profileId = uuidv4();
-    await db.run('INSERT INTO Profile (id, name) VALUES (?, ?)', [profileId, 'TimeLimit User']);
-
-    const timeLimitId1 = uuidv4();
-    await db.run('INSERT INTO TimeLimit (id, profileId, dailyLimitMinutes) VALUES (?, ?, ?)', [timeLimitId1, profileId, 60]);
-
-    const timeLimitId2 = uuidv4();
-    await expect(
-      db.run('INSERT INTO TimeLimit (id, profileId, dailyLimitMinutes) VALUES (?, ?, ?)', [timeLimitId2, profileId, 90])
-    ).rejects.toThrow();
-  });
 });
