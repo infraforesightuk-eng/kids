@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nebula - What's New</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="netflix-style.css">
+    <link rel="icon" href="src/assets/logo.svg">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'netflix-red': '#E50914',
+                        'netflix-black': '#000000',
+                        'netflix-dark': '#141414',
+                        'netflix-gray': '#333333',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        :root {
+            color-scheme: light only !important;
+        }
+        body {
+            background-color: #000000 !important;
+            color: #ffffff !important;
+        }
+        .content-section {
+            background: rgba(20, 20, 20, 0.8);
+            border-left: 4px solid #E50914;
+        }
+    </style>
+</head>
+<body class="bg-netflix-black text-white">
+    <!-- Navigation -->
+    <header class="navbar-glass fixed top-0 w-full z-50">
+        <div class="flex items-center justify-between px-4 lg:px-16 py-4">
+            <h1 class="text-netflix-red text-2xl lg:text-3xl font-bold cursor-pointer hover:text-white transition-colors flex items-center"
+                onclick="window.location.href='index.html'">
+                <img src="src/assets/logo.svg" alt="Nebula Logo" class="w-8 h-8 lg:w-10 lg:h-10 mr-2 object-contain">Nebula
+            </h1>
+            <button onclick="window.location.href='index.html'" class="text-white hover:text-netflix-red transition-colors">
+                <i class="fa-solid fa-arrow-left mr-2"></i> Back to Home
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="pt-24 px-4 lg:px-16 pb-20 max-w-4xl mx-auto">
+        <!-- Header -->
+        <div class="mb-12">
+            <h1 class="text-4xl lg:text-5xl font-bold mb-4">🎬 What's New?</h1>
+            <p class="text-xl text-gray-300">Everything you need to know about the updated Nebula</p>
+            <div class="h-1 w-20 bg-netflix-red rounded-full mt-4"></div>
+        </div>
+
+        <!-- New Features -->
+        <div class="space-y-8 mb-12">
+            <div class="content-section p-6 rounded-lg">
+                <h2 class="text-2xl font-bold mb-4 text-netflix-red flex items-center">
+                    <i class="fa-solid fa-search mr-3"></i> Smart Search & Filters
+                </h2>
+                <p class="text-gray-300 mb-4">Instead of endless scrolling, you can now filter shows by:</p>
+                <ul class="space-y-2 text-gray-300 ml-4">
+                    <li><strong>Where to watch:</strong> Netflix, Prime Video, Disney+, etc.</li>
+                    <li><strong>Genre:</strong> Comedy, Sci-Fi, Drama, Horror, and more</li>
+                    <li><strong>Quality/Rating:</strong> Top Rated, Popular, New Releases</li>
+                    <li><strong>Mood/Vibe:</strong> Feel Good, Dark & Gritty, Mind Bending, etc.</li>
+                    <li><strong>Year/Era:</strong> 2024, 2020s, Classic, and more</li>
+                </ul>
+            </div>
+
+            <div class="content-section p-6 rounded-lg">
+                <h2 class="text-2xl font-bold mb-4 text-netflix-red flex items-center">
+                    <i class="fa-solid fa-film mr-3"></i> Better Movie/Show Pages
+                </h2>
+                <p class="text-gray-300 mb-4">When you click on a movie or show:</p>
+                <ul class="space-y-2 text-gray-300 ml-4">
+                    <li>✓ See the poster, description, and rating</li>
+                    <li>✓ One-click play — no confusing list of providers</li>
+                    <li>✓ View runtime and other details clearly</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- How to Use -->
+        <div class="mb-12">
+            <h2 class="text-3xl font-bold mb-6 flex items-center">
+                <i class="fa-solid fa-book mr-3"></i> How to Use
+            </h2>
+
+            <div class="space-y-6">
+                <div class="content-section p-6 rounded-lg">
+                    <h3 class="text-xl font-bold mb-3 text-netflix-red">📍 Step 1: Find Your Category</h3>
+                    <p class="text-gray-300 mb-3">From the home page, you can either:</p>
+                    <ul class="space-y-2 text-gray-300 ml-4">
+                        <li>• Tap <strong>"Movies"</strong> or <strong>"TV Shows"</strong> in the top menu</li>
+                        <li>• Or tap <strong>"See All"</strong> next to any category (Trending, Popular, etc.)</li>
+                    </ul>
+                </div>
+
+                <div class="content-section p-6 rounded-lg">
+                    <h3 class="text-xl font-bold mb-3 text-netflix-red">🎯 Step 2: Use Filters to Narrow Down</h3>
+                    <p class="text-gray-300 mb-4">On the search page, you can:</p>
+                    <ul class="space-y-2 text-gray-300 ml-4">
+                        <li>• <strong>Select a Provider</strong> - Want only Netflix? Pick it!</li>
+                        <li>• <strong>Pick a Genre</strong> - Only Sci-Fi? Done!</li>
+                        <li>• <strong>Sort by</strong> - Newest first? Most popular? Your choice!</li>
+                        <li>• <strong>Click "More Filters"</strong> - For extra options (Rating, Vibe, Era)</li>
+                    </ul>
+                    <div class="bg-netflix-gray/30 p-4 rounded mt-4 border-l-2 border-netflix-red">
+                        <p class="text-sm text-yellow-400">💡 <strong>Pro Tip:</strong> Mix and match filters! For example: Pick "Prime Video" + "Comedy" = All comedies on Prime Video!</p>
+                    </div>
+                </div>
+
+                <div class="content-section p-6 rounded-lg">
+                    <h3 class="text-xl font-bold mb-3 text-netflix-red">▶️ Step 3: Click & Watch!</h3>
+                    <ul class="space-y-2 text-gray-300 ml-4">
+                        <li>• Click any movie or show poster</li>
+                        <li>• A popup appears with details</li>
+                        <li>• Hit <strong>"Watch Now"</strong> or <strong>"Play Now"</strong> to start watching</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Cool Features -->
+        <div class="mb-12">
+            <h2 class="text-3xl font-bold mb-6">✨ Cool Features</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="content-section p-6 rounded-lg">
+                    <h3 class="font-bold text-netflix-red mb-2">📱 On Any Device</h3>
+                    <p class="text-gray-300 text-sm">Works great on iPad Safari, Android TV browser, phone, or computer</p>
+                </div>
+                <div class="content-section p-6 rounded-lg">
+                    <h3 class="font-bold text-netflix-red mb-2">⚡ Fast Filtering</h3>
+                    <p class="text-gray-300 text-sm">Find exactly what you want in seconds (no more endless scrolling!)</p>
+                </div>
+                <div class="content-section p-6 rounded-lg">
+                    <h3 class="font-bold text-netflix-red mb-2">🎨 Mix & Match</h3>
+                    <p class="text-gray-300 text-sm">Combine filters however you want. The site updates instantly!</p>
+                </div>
+                <div class="content-section p-6 rounded-lg">
+                    <h3 class="font-bold text-netflix-red mb-2">🌟 Smart Recommendations</h3>
+                    <p class="text-gray-300 text-sm">See trending shows and popular picks right on the home page</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- FAQ -->
+        <div class="mb-12">
+            <h2 class="text-3xl font-bold mb-6">🤔 Need Help?</h2>
+            <div class="space-y-4">
+                <div class="content-section p-6 rounded-lg">
+                    <h3 class="font-bold text-netflix-red mb-2">Not finding what you want?</h3>
+                    <ul class="space-y-2 text-gray-300 ml-4">
+                        <li>• Try the <strong>"More Filters"</strong> button for advanced options</li>
+                        <li>• Use the <strong>search bar</strong> at the top to search by name</li>
+                        <li>• Filter by <strong>"Feel Good"</strong> or <strong>"Tearjerker"</strong> vibes if you're not sure</li>
+                    </ul>
+                </div>
+                <div class="content-section p-6 rounded-lg">
+                    <h3 class="font-bold text-netflix-red mb-2">Can't find a show on your streaming service?</h3>
+                    <ul class="space-y-2 text-gray-300 ml-4">
+                        <li>• Make sure you've selected the right <strong>Provider</strong></li>
+                        <li>• Try selecting <strong>"All Providers"</strong> to see everywhere it's available</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- CTA -->
+        <div class="bg-netflix-red/10 border-2 border-netflix-red p-8 rounded-lg text-center">
+            <h2 class="text-2xl font-bold mb-4">🚀 Ready to Get Started?</h2>
+            <p class="text-gray-300 mb-6">Head back to the home page and start exploring!</p>
+            <button onclick="window.location.href='index.html'" class="bg-netflix-red hover:bg-red-700 text-white px-8 py-3 rounded-lg font-bold transition-colors">
+                Go to Home <i class="fa-solid fa-arrow-right ml-2"></i>
+            </button>
+        </div>
+
+        <!-- Footer Note -->
+        <div class="text-center text-gray-400 text-sm mt-12">
+            <p>Happy watching! 🍿</p>
+        </div>
+    </main>
+
+    <script src="https://kit.fontawesome.com/22dc8d85a3.js" crossorigin="anonymous"></script>
+</body>
+</html>
