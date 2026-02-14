@@ -341,12 +341,26 @@ async function showMovieModal(item) {
 
     modal.classList.remove('hidden');
     document.body.style.overflow = 'hidden';
+
+    // Add animation class for smooth entrance
+    const modalContent = modal.querySelector('.modal-content');
+    if (modalContent) {
+        setTimeout(() => {
+            modalContent.classList.add('show');
+        }, 10);
+    }
 }
 
 function closeModal() {
     const modal = document.getElementById('movieModal');
-    modal.classList.add('hidden');
-    document.body.style.overflow = 'auto';
+    const modalContent = modal.querySelector('.modal-content');
+    if (modalContent) {
+        modalContent.classList.remove('show');
+    }
+    setTimeout(() => {
+        modal.classList.add('hidden');
+        document.body.style.overflow = 'auto';
+    }, 300);
 }
 
 // Event Listeners
