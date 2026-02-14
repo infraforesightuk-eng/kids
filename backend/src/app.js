@@ -1,23 +1,24 @@
 import express from 'express';
+import DatabaseService from './services/database.js';
 import ProfileService from './services/profile.js';
 import WhitelistService from './services/whitelist.js';
-import path from 'path';
 
-const createApp = (dbPath) => {
+const createApp = async (dbPath) => {
   const app = express();
   app.use(express.json());
 
-  const profileService = new ProfileService(dbPath);
-  const whitelistService = new WhitelistService(dbPath);
+  // Initialize database connection
+  const dbService = new DatabaseService(dbPath);
+  await dbService.connect();
+  const db = dbService.getConnection();
 
-  // Connection middleware to ensure DB is connected
-  let connected = false;
-  app.use(async (req, res, next) => {
-    if (!connected) {
-      await profileService.connect();
-      await whitelistService.connect();
-      connected = true;
-    }
+  // Initialize services with shared database connection
+  const profileService = new ProfileService(db);
+  const whitelistService = new WhitelistService(db);
+
+  // Attach services to request object
+  app.use((req, res, next) => {
+    req.db = db;
     req.profileService = profileService;
     req.whitelistService = whitelistService;
     next();

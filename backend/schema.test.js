@@ -38,7 +38,8 @@ describe('Database Schema', () => {
 
   it('should create a new profile', async () => {
     const profileId = uuidv4();
-    await db.run('INSERT INTO Profile (id, name, avatar) VALUES (?, ?, ?)', [profileId, 'Test Child', 'boy-1']);
+    const now = new Date().toISOString();
+    await db.run('INSERT INTO Profile (id, name, avatar, createdAt, updatedAt) VALUES (?, ?, ?, ?, ?)', [profileId, 'Test Child', 'boy-1', now, now]);
     const profile = await db.get('SELECT * FROM Profile WHERE id = ?', profileId);
     expect(profile).toBeDefined();
     expect(profile.name).toBe('Test Child');
@@ -46,10 +47,11 @@ describe('Database Schema', () => {
 
   it('should add content to whitelist', async () => {
     const profileId = uuidv4();
-    await db.run('INSERT INTO Profile (id, name) VALUES (?, ?)', [profileId, 'Whitelist User']);
+    const now = new Date().toISOString();
+    await db.run('INSERT INTO Profile (id, name, createdAt, updatedAt) VALUES (?, ?, ?, ?)', [profileId, 'Whitelist User', now, now]);
 
     const whitelistItemId = uuidv4();
-    await db.run('INSERT INTO Whitelist (id, profileId, tmdbId, mediaType) VALUES (?, ?, ?, ?)', [whitelistItemId, profileId, '12345', 'movie']);
+    await db.run('INSERT INTO Whitelist (id, profileId, tmdbId, mediaType, addedAt) VALUES (?, ?, ?, ?, ?)', [whitelistItemId, profileId, '12345', 'movie', now]);
     const whitelistItem = await db.get('SELECT * FROM Whitelist WHERE id = ?', whitelistItemId);
 
     expect(whitelistItem.tmdbId).toBe('12345');
@@ -58,14 +60,15 @@ describe('Database Schema', () => {
 
   it('should enforce unique constraint on whitelist', async () => {
     const profileId = uuidv4();
-    await db.run('INSERT INTO Profile (id, name) VALUES (?, ?)', [profileId, 'Unique User']);
+    const now = new Date().toISOString();
+    await db.run('INSERT INTO Profile (id, name, createdAt, updatedAt) VALUES (?, ?, ?, ?)', [profileId, 'Unique User', now, now]);
 
     const whitelistItemId1 = uuidv4();
-    await db.run('INSERT INTO Whitelist (id, profileId, tmdbId, mediaType) VALUES (?, ?, ?, ?)', [whitelistItemId1, profileId, '555', 'movie']);
+    await db.run('INSERT INTO Whitelist (id, profileId, tmdbId, mediaType, addedAt) VALUES (?, ?, ?, ?, ?)', [whitelistItemId1, profileId, '555', 'movie', now]);
 
     const whitelistItemId2 = uuidv4();
     await expect(
-      db.run('INSERT INTO Whitelist (id, profileId, tmdbId, mediaType) VALUES (?, ?, ?, ?)', [whitelistItemId2, profileId, '555', 'movie'])
+      db.run('INSERT INTO Whitelist (id, profileId, tmdbId, mediaType, addedAt) VALUES (?, ?, ?, ?, ?)', [whitelistItemId2, profileId, '555', 'movie', now])
     ).rejects.toThrow();
   });
 });

@@ -12,14 +12,9 @@ describe('API Integration', () => {
 
   beforeAll(async () => {
     if (fs.existsSync(dbPath)) fs.unlinkSync(dbPath);
-    
-    // Setup schema
-    const db = await open({ filename: dbPath, driver: sqlite3.Database });
-    const schemaSql = fs.readFileSync(path.resolve(process.cwd(), 'db/schema.sql'), 'utf8');
-    await db.exec(schemaSql);
-    await db.close();
 
-    app = createApp(dbPath);
+    // createApp now handles schema initialization automatically
+    app = await createApp(dbPath);
   });
 
   afterAll(() => {

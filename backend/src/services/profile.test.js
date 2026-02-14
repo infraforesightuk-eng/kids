@@ -1,14 +1,14 @@
 import { describe, it, expect, beforeAll, afterAll } from 'vitest';
-import sqlite3 from 'sqlite3';
-import { open } from 'sqlite';
 import path from 'path';
 import fs from 'fs';
-import ProfileService from './profile'; // Import the service
+import DatabaseService from './database.js';
+import ProfileService from './profile.js';
 
 describe('Profile Service', () => {
+  let dbService;
   let db;
   let profileService;
-  const dbPath = path.resolve(process.cwd(), 'test-profile.db'); // Unique DB for profile tests
+  const dbPath = path.resolve(process.cwd(), 'test-profile.db');
 
   beforeAll(async () => {
     // Clean up previous test database if it exists
@@ -16,31 +16,18 @@ describe('Profile Service', () => {
       fs.unlinkSync(dbPath);
     }
 
-    // Open a new database connection
-    db = await open({
-      filename: dbPath,
-      driver: sqlite3.Database,
-    });
+    // Initialize database with schema
+    dbService = new DatabaseService(dbPath);
+    await dbService.connect();
+    db = dbService.getConnection();
 
-    // Apply schema
-    await db.exec(`
-      CREATE TABLE IF NOT EXISTS Profile (
-        id TEXT PRIMARY KEY,
-        name TEXT NOT NULL,
-        avatar TEXT,
-        pin TEXT,
-        createdAt TEXT DEFAULT CURRENT_TIMESTAMP,
-        updatedAt TEXT DEFAULT CURRENT_TIMESTAMP
-      );
-    `);
-
-    profileService = new ProfileService(dbPath);
-    await profileService.connect();
+    // Initialize service with shared connection
+    profileService = new ProfileService(db);
   });
 
   afterAll(async () => {
-    if (profileService) {
-      await profileService.disconnect();
+    if (dbService) {
+      await dbService.disconnect();
     }
     // Clean up test database file
     if (fs.existsSync(dbPath)) {
@@ -105,10 +92,12 @@ describe('Profile Service', () => {
     // Clean database first
     await db.run('DELETE FROM Profile');
 
-    // Create multiple profiles
-    await profileService.createProfile('Profile 1', '👧', '1111');
-    await profileService.createProfile('Profile 2', '👦', '2222');
-    await profileService.createProfile('Profile 3', '🧒', '3333');
+    // Create multiple profiles with delays to ensure different timestamps
+    const profile1 = await profileService.createProfile('Profile 1', '👧', '1111');
+    await new Promise(resolve => setTimeout(resolve, 10));
+    const profile2 = await profileService.createProfile('Profile 2', '👦', '2222');
+    await new Promise(resolve => setTimeout(resolve, 10));
+    const profile3 = await profileService.createProfile('Profile 3', '🧒', '3333');
 
     const allProfiles = await profileService.getAllProfiles();
     expect(allProfiles).toBeDefined();
