@@ -1,10 +1,10 @@
-
-*{
+* {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
 }
+
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -31,7 +31,7 @@ body::before {
     z-index: -1;
 }
 
-.nav{
+.nav {
     display: grid;
     grid-template-columns: 1fr 30% 5%;
     padding: 10px;
@@ -42,7 +42,7 @@ body::before {
     margin-bottom: 20px;
 }
 
-input{
+input {
     grid-row: 1;
     grid-column: 2;
     width: 90%;
@@ -56,7 +56,7 @@ input{
     font-size: 18px;
 }
 
-.fa-magnifying-glass{
+.fa-magnifying-glass {
     grid-row: 1;
     grid-column: 3;
     font-size: 34px;
@@ -66,7 +66,7 @@ input{
     cursor: pointer;
 }
 
-.title{
+.title {
     grid-row: 1;
     grid-column: 1;
     color: #c1c1c1;
@@ -77,13 +77,13 @@ input{
 }
 
 
-i{
+i {
     color: #c1c1c1;
     cursor: pointer;
 }
 
 
-footer{
+footer {
     padding: 10px;
     padding-left: 130px;
     padding-right: 130px;
@@ -91,15 +91,16 @@ footer{
     background-color: #14080e;
 }
 
-i{
+i {
     color: #c1c1c1;
     cursor: pointer;
 }
 
-i:hover{
+i:hover {
     color: #ffffff;
 }
-.contanctInfos{
+
+.contanctInfos {
     display: grid;
     grid-template-columns: 20% 20% 20%;
     justify-content: center;
@@ -125,14 +126,15 @@ body {
 }
 
 /* Header Styles */
-.container > div h1 {
+.container>div h1 {
     font-size: 2.5em;
     margin-bottom: 10px;
-    color: #dd0d59; /* IMDb-like yellow for the title */
+    color: #dd0d59;
+    /* IMDb-like yellow for the title */
     text-align: center;
 }
 
-.container > div p em {
+.container>div p em {
     font-size: 1.2em;
     color: #c1c1c1;
     text-align: center;
@@ -151,6 +153,7 @@ body {
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
 }
+
 .video-container iframe {
     width: 100%;
     max-width: 800px;
@@ -160,17 +163,17 @@ body {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
     overflow: hidden;
     display: block;
-    scrollbar-width: none; 
+    scrollbar-width: none;
 }
 
 .video-container iframe::-webkit-scrollbar {
-    display: none; 
+    display: none;
 }
 
 
 
 .container {
-    min-height: calc(100vh - 100px); 
+    min-height: calc(100vh - 100px);
     overflow: hidden;
 }
 
@@ -208,27 +211,28 @@ body {
     justify-content: center;
     align-items: center;
     margin: 20px 0;
-    overflow: hidden; 
-    max-width: 100%; 
+    overflow: hidden;
+    max-width: 100%;
 }
+
 .container {
     max-width: 1000px;
     margin: 20px auto;
     padding: 20px;
-    background-color: rgba(20, 20, 20, 0.9); 
+    background-color: rgba(20, 20, 20, 0.9);
     border-radius: 12px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
     overflow: hidden;
 }
 
-.container > div h1 {
+.container>div h1 {
     font-size: 2.5em;
-    color: #dd0d59; 
+    color: #dd0d59;
     text-align: center;
     margin-bottom: 10px;
 }
 
-.container > div p em {
+.container>div p em {
     font-size: 1.2em;
     color: #c1c1c1;
     text-align: center;
@@ -296,7 +300,7 @@ body {
 }
 
 .episode-buttons button {
-    background-color: #a8171c; 
+    background-color: #a8171c;
     color: white;
     border: none;
     padding: 10px 15px;
@@ -308,7 +312,7 @@ body {
 }
 
 .episode-buttons button:hover {
-    background-color: #97444f; 
+    background-color: #97444f;
 }
 
 .episode-buttons button:focus {
@@ -317,7 +321,7 @@ body {
 }
 
 .episode-buttons button.active {
-    background-color: #2c0a0a; 
+    background-color: #2c0a0a;
 }
 
 .season-buttons {
@@ -373,7 +377,7 @@ body {
     z-index: 1;
 }
 
-.server-selection > * {
+.server-selection>* {
     position: relative;
     z-index: 2;
 }
@@ -461,11 +465,24 @@ body {
     .server-btn:hover {
         transform: none;
     }
-    
+
     .server-btn:active {
         transform: scale(0.98);
         transition: transform 0.1s ease;
     }
+}
+
+/* Server Selection Dropdown */
+.server-dropdown {
+    margin: 0 auto;
+    max-width: 400px;
+    width: 100%;
+}
+
+.server-selection h3 {
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+    text-align: center;
 }
 
 /* Responsive Server Selection */
@@ -474,18 +491,18 @@ body {
         padding: 1.5rem;
         margin: 1.5rem 0;
     }
-    
+
     .server-grid {
         grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
         gap: 0.75rem;
     }
-    
+
     .server-btn {
         padding: 0.75rem 1rem;
         font-size: 0.9rem;
         min-height: 44px;
     }
-    
+
     .server-selection h3 {
         font-size: 1.3rem;
         margin-bottom: 1.25rem;
@@ -497,18 +514,18 @@ body {
         padding: 1rem;
         margin: 1rem 0;
     }
-    
+
     .server-grid {
         grid-template-columns: repeat(2, 1fr);
         gap: 0.5rem;
     }
-    
+
     .server-btn {
         padding: 0.75rem 0.5rem;
         font-size: 0.85rem;
         min-height: 42px;
     }
-    
+
     .server-selection h3 {
         font-size: 1.2rem;
         margin-bottom: 1rem;
@@ -527,7 +544,7 @@ body {
         height: auto;
     }
 
-    .container > div h1 {
+    .container>div h1 {
         font-size: 2em;
     }
 
@@ -536,60 +553,76 @@ body {
     }
 }
 
-.fa-instagram{font-size: 50px; text-align: center;}
-.fa-linkedin-in{font-size: 50px; text-align: center;}
-.fa-github{font-size: 50px; text-align: center;}
+.fa-instagram {
+    font-size: 50px;
+    text-align: center;
+}
 
-    @media screen and (max-width:600px) {
-        .container {
-            padding: 15px;
-        }
-    
-        .video-container iframe {
-            width: 100%;
-            height: auto;
-        }
-    
-        .container > div h1 {
-            font-size: 2em;
-        }
-    
-        .movie-details {
-            padding: 15px;
-        }
-        .body{
-            min-width: 300px;
-        }
-        .nav {
-            display: grid !important;
-            grid-template-columns: 1fr !important;
-            grid-template-rows: 1fr 1fr !important;
-            padding: 0;
-            padding: 20px 40px;
-        }
-    
-        .title {
-            grid-column: 1 !important; 
-            grid-row: 1 !important;
-            text-align: center;
-            margin-bottom: 20px;
-        }
-    
-        input {
-            grid-column: 1 !important; 
-            grid-row: 2 !important;
-            justify-self: center; 
-            width: 100%;
-        }
-        footer{
-            padding: 20px;
-            justify-content: center;
-            background-color: #14080e;
-        }
-        .fa-magnifying-glass{
-            display: none !important;
-        }
+.fa-linkedin-in {
+    font-size: 50px;
+    text-align: center;
+}
+
+.fa-github {
+    font-size: 50px;
+    text-align: center;
+}
+
+@media screen and (max-width:600px) {
+    .container {
+        padding: 15px;
     }
+
+    .video-container iframe {
+        width: 100%;
+        height: auto;
+    }
+
+    .container>div h1 {
+        font-size: 2em;
+    }
+
+    .movie-details {
+        padding: 15px;
+    }
+
+    .body {
+        min-width: 300px;
+    }
+
+    .nav {
+        display: grid !important;
+        grid-template-columns: 1fr !important;
+        grid-template-rows: 1fr 1fr !important;
+        padding: 0;
+        padding: 20px 40px;
+    }
+
+    .title {
+        grid-column: 1 !important;
+        grid-row: 1 !important;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    input {
+        grid-column: 1 !important;
+        grid-row: 2 !important;
+        justify-self: center;
+        width: 100%;
+    }
+
+    footer {
+        padding: 20px;
+        justify-content: center;
+        background-color: #14080e;
+    }
+
+    .fa-magnifying-glass {
+        display: none !important;
+    }
+}
+
 .video-container iframe {
     overflow: hidden;
 }
@@ -637,7 +670,7 @@ body {
     z-index: 1;
 }
 
-.tv-sidebar > * {
+.tv-sidebar>* {
     position: relative;
     z-index: 2;
 }
@@ -684,7 +717,8 @@ body {
     -webkit-appearance: none;
     -moz-appearance: none;
     box-shadow: 0 4px 15px rgba(229, 9, 20, 0.1);
-    min-height: 50px; /* Better touch targets */
+    min-height: 50px;
+    /* Better touch targets */
 }
 
 .dropdown-wrapper select:hover {
@@ -713,7 +747,7 @@ body {
     transition: all 0.3s ease;
 }
 
-.dropdown-wrapper select:focus + .dropdown-arrow {
+.dropdown-wrapper select:focus+.dropdown-arrow {
     transform: translateY(-50%) rotate(180deg);
     color: #E50914;
 }
@@ -733,7 +767,7 @@ body {
         font-size: 0.9rem;
         min-height: 48px;
     }
-    
+
     .season-dropdown label {
         font-size: 0.9rem;
     }
@@ -745,7 +779,7 @@ body {
         font-size: 0.85rem;
         min-height: 44px;
     }
-    
+
     .dropdown-arrow {
         right: 0.8rem;
         font-size: 0.9rem;
@@ -790,7 +824,8 @@ body {
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     position: relative;
     overflow: hidden;
-    min-height: 120px; /* Better touch targets */
+    min-height: 120px;
+    /* Better touch targets */
 }
 
 .episode-card-sidebar::before {
@@ -820,7 +855,7 @@ body {
     .episode-card-sidebar:hover {
         transform: none;
     }
-    
+
     .episode-card-sidebar:active {
         transform: scale(0.98);
         transition: transform 0.1s ease;
@@ -841,15 +876,15 @@ body {
         min-height: 80px;
         margin-bottom: 0.75rem;
     }
-    
+
     .episode-card-title {
         font-size: 0.85rem !important;
     }
-    
+
     .episode-card-desc {
         font-size: 0.75rem !important;
     }
-    
+
     .episode-badge {
         padding: 0.3rem 0.6rem;
         font-size: 0.7rem;
@@ -862,23 +897,24 @@ body {
         min-height: 70px;
         margin-bottom: 0.5rem;
     }
-    
+
     .episode-card-title {
         font-size: 0.8rem !important;
         margin-bottom: 0.25rem !important;
     }
-    
+
     .episode-card-desc {
         font-size: 0.7rem !important;
         margin-bottom: 0.5rem !important;
     }
-    
+
     .episode-badge {
         padding: 0.25rem 0.5rem;
         font-size: 0.65rem;
     }
-    
-    .air-date, .runtime {
+
+    .air-date,
+    .runtime {
         font-size: 0.6rem;
         padding: 0.15rem 0.3rem;
     }
@@ -1043,7 +1079,7 @@ body {
     .episode-card:hover {
         transform: none;
     }
-    
+
     .episode-card:active {
         transform: scale(0.98);
         transition: transform 0.1s ease;
@@ -1056,37 +1092,37 @@ body {
         grid-template-columns: repeat(2, 1fr) !important;
         gap: 0.75rem !important;
     }
-    
+
     .episode-card {
         padding: 1rem;
         min-height: 160px;
         gap: 0.75rem;
     }
-    
+
     .episode-number {
         padding: 0.5rem 0.7rem;
         font-size: 0.85rem;
     }
-    
+
     .episode-title {
         font-size: 0.95rem;
         margin-bottom: 0.5rem;
         -webkit-line-clamp: 2;
         line-clamp: 2;
     }
-    
+
     .episode-overview {
         font-size: 0.85rem;
         margin-bottom: 0.75rem;
         -webkit-line-clamp: 3;
         line-clamp: 3;
     }
-    
+
     .episode-meta span {
         font-size: 0.75rem;
         padding: 0.25rem 0.45rem;
     }
-    
+
     .episode-selection {
         padding: 1.5rem;
         max-height: 450px;
@@ -1098,7 +1134,7 @@ body {
         grid-template-columns: 1fr !important;
         gap: 0.75rem !important;
     }
-    
+
     .episode-card {
         padding: 1rem;
         min-height: 140px;
@@ -1106,7 +1142,7 @@ body {
         flex-direction: row;
         align-items: flex-start;
     }
-    
+
     .episode-number {
         padding: 0.6rem 0.8rem;
         font-size: 0.9rem;
@@ -1114,7 +1150,7 @@ body {
         min-width: 50px;
         flex-shrink: 0;
     }
-    
+
     .episode-info {
         width: auto;
         flex: 1;
@@ -1124,7 +1160,7 @@ body {
         height: 100%;
         min-height: 100px;
     }
-    
+
     .episode-title {
         font-size: 1rem;
         font-weight: 700;
@@ -1132,7 +1168,7 @@ body {
         -webkit-line-clamp: 2;
         line-clamp: 2;
     }
-    
+
     .episode-overview {
         font-size: 0.85rem;
         line-height: 1.4;
@@ -1141,17 +1177,17 @@ body {
         line-clamp: 3;
         flex-grow: 1;
     }
-    
+
     .episode-meta {
         margin-top: auto;
         gap: 0.4rem;
     }
-    
+
     .episode-meta span {
         font-size: 0.75rem;
         padding: 0.3rem 0.5rem;
     }
-    
+
     .episode-selection {
         padding: 1rem;
         max-height: 400px;
@@ -1185,7 +1221,8 @@ body {
     gap: 0.25rem;
 }
 
-.air-date, .runtime {
+.air-date,
+.runtime {
     font-size: 0.7rem;
     color: rgba(255, 255, 255, 0.6);
     background: rgba(255, 255, 255, 0.1);
@@ -1369,33 +1406,34 @@ body {
         padding: 0 1rem;
         max-width: 100% !important;
     }
-    
+
     .video-section {
         width: 100% !important;
         max-width: 100% !important;
         flex: 1 !important;
         min-width: 0 !important;
     }
-    
+
     /* Hide the TV sidebar completely */
     .tv-sidebar {
         display: none !important;
     }
-    
+
     /* Full width video container for tablet */
     .video-container {
         position: relative !important;
         width: 100% !important;
         max-width: 100% !important;
         height: 0 !important;
-        padding-bottom: 56.25% !important; /* 16:9 aspect ratio */
+        padding-bottom: 56.25% !important;
+        /* 16:9 aspect ratio */
         background: #000 !important;
         border-radius: 12px !important;
         overflow: hidden !important;
         box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5) !important;
         margin-bottom: 0 !important;
     }
-    
+
     .video-container iframe {
         position: absolute !important;
         top: 0 !important;
@@ -1408,25 +1446,25 @@ body {
     .mobile-only {
         display: block !important;
     }
-    
+
     .desktop-only {
         display: none !important;
     }
-    
+
     /* Tablet episode cards */
     .episode-card-sidebar {
         padding: 1rem;
     }
-    
+
     .episodes-sidebar {
         max-height: 400px;
     }
-    
+
     /* Override any conflicting season selection styles */
     .season-selection.mobile-only {
         display: none !important;
     }
-    
+
     .episode-selection.mobile-only {
         display: none !important;
     }
@@ -1438,22 +1476,22 @@ body {
         display: flex !important;
         flex-direction: column !important;
     }
-    
+
     .video-section {
         width: 100% !important;
         max-width: 100% !important;
         flex: 1 !important;
         min-width: 0 !important;
     }
-    
+
     .tv-sidebar {
         display: none !important;
     }
-    
+
     .desktop-only {
         display: none !important;
     }
-    
+
     .mobile-only {
         display: block !important;
     }
@@ -1466,32 +1504,32 @@ body {
         flex-direction: row !important;
         align-items: flex-start !important;
     }
-    
+
     .tv-sidebar {
         display: block !important;
         width: 380px !important;
         min-width: 380px !important;
         margin: 0 !important;
     }
-    
+
     .video-section {
         flex: 1 !important;
         max-width: calc(100% - 420px) !important;
     }
-    
+
     .mobile-only {
         display: none !important;
     }
-    
+
     .desktop-only {
         display: block !important;
     }
-    
+
     /* Override any conflicting season selection styles */
     .season-selection.mobile-only {
         display: none !important;
     }
-    
+
     .episode-selection.mobile-only {
         display: none !important;
     }
@@ -1506,20 +1544,21 @@ body {
         padding: 0 0.5rem;
         position: relative;
     }
-    
+
     /* Add smooth gradient fade to bottom of video container */
     .video-container {
         position: relative;
         width: 100%;
         height: 0;
-        padding-bottom: 56.25%; /* 16:9 aspect ratio */
+        padding-bottom: 56.25%;
+        /* 16:9 aspect ratio */
         background: #000;
         border-radius: 12px;
         overflow: hidden;
         box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
         margin-bottom: 0 !important;
     }
-    
+
     .video-container::after {
         content: '';
         position: absolute;
@@ -1527,20 +1566,18 @@ body {
         left: 0;
         right: 0;
         height: 80px;
-        background: linear-gradient(
-            180deg,
-            transparent 0%,
-            rgba(0, 0, 0, 0.1) 15%,
-            rgba(0, 0, 0, 0.3) 35%,
-            rgba(0, 0, 0, 0.5) 55%,
-            rgba(0, 0, 0, 0.7) 75%,
-            rgba(0, 0, 0, 0.9) 100%
-        );
+        background: linear-gradient(180deg,
+                transparent 0%,
+                rgba(0, 0, 0, 0.1) 15%,
+                rgba(0, 0, 0, 0.3) 35%,
+                rgba(0, 0, 0, 0.5) 55%,
+                rgba(0, 0, 0, 0.7) 75%,
+                rgba(0, 0, 0, 0.9) 100%);
         pointer-events: none;
         z-index: 10;
         border-radius: 0 0 12px 12px;
     }
-    
+
     .video-container iframe {
         position: absolute;
         top: 0;
@@ -1549,7 +1586,7 @@ body {
         height: 100%;
         border: none;
     }
-    
+
     /* Add smooth gradient transition between video and description */
     .video-sidebar-layout::after {
         content: '';
@@ -1558,108 +1595,104 @@ body {
         left: 0;
         right: 0;
         height: 60px;
-        background: linear-gradient(
-            180deg,
-            transparent 0%,
-            rgba(0, 0, 0, 0.1) 20%,
-            rgba(0, 0, 0, 0.3) 50%,
-            rgba(0, 0, 0, 0.6) 80%,
-            rgba(0, 0, 0, 0.9) 100%
-        );
+        background: linear-gradient(180deg,
+                transparent 0%,
+                rgba(0, 0, 0, 0.1) 20%,
+                rgba(0, 0, 0, 0.3) 50%,
+                rgba(0, 0, 0, 0.6) 80%,
+                rgba(0, 0, 0, 0.9) 100%);
         pointer-events: none;
         z-index: 10;
         border-radius: 0 0 16px 16px;
     }
-    
+
     /* Ensure video section has proper background */
     .video-section {
-        background: linear-gradient(
-            135deg,
-            rgba(20, 20, 20, 0.95) 0%,
-            rgba(0, 0, 0, 0.9) 100%
-        );
+        background: linear-gradient(135deg,
+                rgba(20, 20, 20, 0.95) 0%,
+                rgba(0, 0, 0, 0.9) 100%);
         border-radius: 16px;
         padding: 1rem;
         margin-bottom: 0;
         position: relative;
         overflow: hidden;
     }
-    
+
     /* Movie details section with smooth integration */
     .movie-details {
-        margin-top: -30px; /* Overlap with gradient */
+        margin-top: -30px;
+        /* Overlap with gradient */
         padding-top: 50px !important;
         position: relative;
         z-index: 5;
-        background: linear-gradient(
-            180deg,
-            transparent 0%,
-            rgba(26, 26, 26, 0.3) 20%,
-            rgba(26, 26, 26, 0.8) 40%,
-            rgba(26, 26, 26, 0.95) 100%
-        );
+        background: linear-gradient(180deg,
+                transparent 0%,
+                rgba(26, 26, 26, 0.3) 20%,
+                rgba(26, 26, 26, 0.8) 40%,
+                rgba(26, 26, 26, 0.95) 100%);
         backdrop-filter: blur(10px);
         border-radius: 16px 16px 0 0;
     }
-    
+
     .tv-sidebar {
         display: none !important;
     }
-    
+
     .desktop-only {
         display: none !important;
     }
-    
+
     .mobile-only {
         display: block !important;
     }
-    
+
     .video-section {
         width: 100% !important;
         max-width: 100% !important;
     }
-    
+
     /* Mobile specific styles */
     .watch-hero {
         margin-bottom: 1rem;
     }
-    
+
     .watch-hero .p-8 {
         padding: 1.5rem !important;
     }
-    
+
     .watch-title {
         font-size: 1.8rem !important;
     }
-    
-    .season-selection, .episode-selection {
+
+    .season-selection,
+    .episode-selection {
         padding: 1rem !important;
         margin-bottom: 1rem !important;
     }
-    
+
     .season-grid {
         grid-template-columns: repeat(auto-fit, minmax(90px, 1fr)) !important;
         gap: 8px !important;
     }
-    
+
     .episode-grid {
         grid-template-columns: repeat(2, 1fr) !important;
         gap: 0.75rem !important;
     }
-    
+
     .server-selection {
         padding: 1.5rem !important;
     }
-    
+
     .server-grid {
         grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)) !important;
         gap: 0.75rem !important;
     }
-    
+
     .movie-details {
         padding: 1rem !important;
     }
-    
+
     .details-grid {
         grid-template-columns: 1fr !important;
         gap: 1rem !important;
@@ -1671,30 +1704,34 @@ body {
     .watch-title {
         font-size: 1.5rem !important;
     }
-    
+
     .season-grid {
         grid-template-columns: repeat(auto-fit, minmax(80px, 1fr)) !important;
     }
-    
+
     .episode-grid {
         grid-template-columns: 1fr !important;
         gap: 0.5rem !important;
     }
-    
+
     .server-grid {
         grid-template-columns: repeat(2, 1fr) !important;
         gap: 0.5rem !important;
     }
-    
+
     .watch-hero .p-8 {
         padding: 1rem !important;
     }
-    
-    .season-selection, .episode-selection, .server-selection, .movie-details {
+
+    .season-selection,
+    .episode-selection,
+    .server-selection,
+    .movie-details {
         padding: 0.75rem !important;
         margin-bottom: 0.75rem !important;
     }
 }
+
 /* Movie Content Wrapper - Full Width with Sidebar */
 .movie-content-wrapper {
     width: 100%;
@@ -1738,11 +1775,11 @@ body {
     .movie-content-wrapper .movie-sidebar {
         display: none !important;
     }
-    
+
     .movie-content-wrapper .video-sidebar-layout {
         display: block !important;
     }
-    
+
     .movie-content-wrapper .video-section {
         width: 100%;
     }
@@ -1755,11 +1792,11 @@ body {
 }
 
 .episode-card-sidebar.now-playing {
-    background: linear-gradient(135deg, rgba(229,9,20,0.15) 0%, rgba(229,9,20,0.05) 100%);
-    border: 2px solid rgba(229,9,20,0.6);
-    box-shadow: 
-        0 0 20px rgba(229,9,20,0.3),
-        0 4px 15px rgba(0,0,0,0.4);
+    background: linear-gradient(135deg, rgba(229, 9, 20, 0.15) 0%, rgba(229, 9, 20, 0.05) 100%);
+    border: 2px solid rgba(229, 9, 20, 0.6);
+    box-shadow:
+        0 0 20px rgba(229, 9, 20, 0.3),
+        0 4px 15px rgba(0, 0, 0, 0.4);
 }
 
 /* Remove the shimmer effect */
@@ -1769,21 +1806,23 @@ body {
 
 /* Now Playing Indicator */
 .now-playing-indicator {
-    display: none !important; /* Hide by default */
+    display: none !important;
+    /* Hide by default */
     align-items: center;
     gap: 6px;
-    background: rgba(229,9,20,0.9);
+    background: rgba(229, 9, 20, 0.9);
     padding: 4px 8px;
     border-radius: 12px;
     font-size: 0.7rem;
     font-weight: 600;
     color: white;
     backdrop-filter: blur(10px);
-    box-shadow: 0 2px 8px rgba(229,9,20,0.4);
+    box-shadow: 0 2px 8px rgba(229, 9, 20, 0.4);
 }
 
 .episode-card-sidebar.now-playing .now-playing-indicator {
-    display: flex !important; /* Only show when episode is playing */
+    display: flex !important;
+    /* Only show when episode is playing */
 }
 
 /* Update episode card footer to include now playing indicator */
@@ -1838,10 +1877,13 @@ body {
 }
 
 @keyframes soundWave {
-    0%, 100% {
+
+    0%,
+    100% {
         transform: scaleY(1);
         opacity: 0.8;
     }
+
     50% {
         transform: scaleY(1.8);
         opacity: 1;
@@ -1850,9 +1892,9 @@ body {
 
 /* Enhanced hover effect for now playing episodes */
 .episode-card-sidebar.now-playing:hover {
-    box-shadow: 
-        0 0 25px rgba(229,9,20,0.4),
-        0 8px 25px rgba(0,0,0,0.5);
+    box-shadow:
+        0 0 25px rgba(229, 9, 20, 0.4),
+        0 8px 25px rgba(0, 0, 0, 0.5);
 }
 
 /* Pulse effect for episode badge when playing */
@@ -1862,21 +1904,24 @@ body {
 }
 
 @keyframes badgePulse {
-    0%, 100% {
-        box-shadow: 0 0 0 0 rgba(229,9,20,0.7);
+
+    0%,
+    100% {
+        box-shadow: 0 0 0 0 rgba(229, 9, 20, 0.7);
     }
+
     50% {
-        box-shadow: 0 0 0 6px rgba(229,9,20,0);
+        box-shadow: 0 0 0 6px rgba(229, 9, 20, 0);
     }
 }
 
 /* Mobile Episode Card Active State */
 .episode-card.active {
-    background: linear-gradient(135deg, rgba(229,9,20,0.15) 0%, rgba(229,9,20,0.05) 100%);
-    border: 2px solid rgba(229,9,20,0.6);
-    box-shadow: 
-        0 0 20px rgba(229,9,20,0.3),
-        0 4px 15px rgba(0,0,0,0.4);
+    background: linear-gradient(135deg, rgba(229, 9, 20, 0.15) 0%, rgba(229, 9, 20, 0.05) 100%);
+    border: 2px solid rgba(229, 9, 20, 0.6);
+    box-shadow:
+        0 0 20px rgba(229, 9, 20, 0.3),
+        0 4px 15px rgba(0, 0, 0, 0.4);
 }
 
 .episode-card.active .episode-number {

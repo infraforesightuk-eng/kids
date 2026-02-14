@@ -4,7 +4,8 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-**movieIguess** (kids.btfm.uk) is a streaming platform for movies and TV shows with integrated parental controls. The project consists of:
+**Nebula** (home.btfm.uk) is a streaming platform for movies and TV shows with integrated parental controls. The project consists of:
+
 - **Frontend** (`/html`): Vanilla JavaScript SPA using TMDB API for content discovery
 - **Backend** (`/backend`): Node.js/Express API with SQLite for parental control features (profiles, whitelisting, time limits, activity logging)
 
@@ -13,6 +14,7 @@ The frontend uses HTML pages with modular JavaScript (home.js, search.js, view.j
 ## Common Commands
 
 ### Backend Development
+
 ```bash
 # Run all tests
 cd backend && npm test
@@ -28,18 +30,22 @@ cd backend && node src/index.js
 ```
 
 ### Frontend Development
+
 The frontend is static HTML/JS. Use a local server:
+
 ```bash
 cd html
 npx vite
 ```
 
 ### Database
+
 The SQLite database (`parental-controls.db`) is created automatically on first run. Schema is in `backend/db/schema.sql` with tables: Profile, Whitelist, TimeLimit, ActivityLog.
 
 ## Architecture
 
 ### Backend Service Layer Pattern
+
 The backend uses a **service-based architecture** where each domain (profiles, whitelist, time limits, activity) has its own service class:
 
 - **Service Classes** (`backend/src/services/`): Each service manages its own database connection and encapsulates domain logic (ProfileService, WhitelistService)
@@ -50,7 +56,9 @@ The backend uses a **service-based architecture** where each domain (profiles, w
 This pattern allows for easy testing (services can be instantiated with test database paths) and clean separation of concerns.
 
 ### Frontend Architecture
+
 The frontend is page-based with shared JavaScript modules:
+
 - **index.html** → `home.js`: Homepage with featured content and category rows
 - **search.html** → `search.js`: Search interface
 - **viewMovie.html** → `view.js`: Movie/TV detail pages
@@ -62,12 +70,14 @@ All pages use the TMDB API (key stored in frontend JS) for fetching movie/TV met
 ## Testing Approach
 
 Backend tests use Vitest with:
+
 - **Per-test database isolation**: Each test creates a unique temporary database file
 - **Sequential execution**: `vitest.config.js` disables concurrent tests to avoid database conflicts
 - **Service-level testing**: Tests instantiate services directly with test database paths
 - **Integration tests**: `app.test.js` uses supertest to test HTTP endpoints
 
 Example test pattern:
+
 ```javascript
 const dbPath = path.resolve(__dirname, `test-${Date.now()}-${Math.random()}.db`);
 const service = new ProfileService(dbPath);
@@ -77,15 +87,21 @@ await service.disconnect();
 await fs.unlink(dbPath); // cleanup
 ```
 
+## Deployment notes
+
+ sync the changes from your development folder to the production web folder (/var/www/home.btfm.uk/html
+
 ## Current Development Status
 
 Phase 1 (Backend API for profiles and whitelisting) is nearly complete. See `conductor/tracks/implement_parental_control_dashboard_20260212/plan.md` for detailed progress tracking.
 
 Completed:
+
 - Database schema (Profile, Whitelist, TimeLimit, ActivityLog)
 - Profile CRUD API endpoints
 - Whitelist management API endpoints (add, get, remove)
 
 Next steps:
+
 - Frontend UI for profile management
 - Time limit and activity monitoring features

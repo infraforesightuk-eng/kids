@@ -182,13 +182,17 @@ async function WatchMovie(movieId) {
                         <p style="color: rgba(255,255,255,0.7); font-size: 0.9rem; margin-bottom: 1rem; text-align: center;">
                             💡 If the current server is slow or not working, try switching to another server below :p
                         </p>
-                        <div class="server-grid">
-                            ${servers.map((server, index) => `
-                                <button class="server-btn ${server.url === currentServerUrl ? 'active' : ''}" 
-                                        onclick="changeServer('${server.url}', 'movie/${movieId}', ${index}, 'movie')">
-                                    ${server.name}
-                                </button>
-                            `).join('')}
+                        <div class="server-dropdown">
+                            <div class="dropdown-wrapper">
+                                <select onchange="changeServer(this.value, 'movie')">
+                                    ${servers.map((server) => `
+                                        <option value="${server.url}" ${server.url === currentServerUrl ? 'selected' : ''}>
+                                            ${server.name}
+                                        </option>
+                                    `).join('')}
+                                </select>
+                                <div class="dropdown-arrow">▼</div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -390,13 +394,17 @@ async function WatchTV(seriesId) {
                         <p style="color: rgba(255,255,255,0.7); font-size: 0.9rem; margin-bottom: 1rem; text-align: center;">
                             💡 If the current server is slow or not working, try switching to another server below :p
                         </p>
-                        <div class="server-grid">
-                            ${servers.map((server, index) => `
-                                <button class="server-btn ${server.url === currentServerUrl ? 'active' : ''}" 
-                                        onclick="changeServer('${server.url}', 'tv/${seriesId}', ${index}, 'tv')">
-                                    ${server.name}
-                                </button>
-                            `).join('')}
+                        <div class="server-dropdown">
+                            <div class="dropdown-wrapper">
+                                <select onchange="changeServer(this.value, 'tv')">
+                                    ${servers.map((server) => `
+                                        <option value="${server.url}" ${server.url === currentServerUrl ? 'selected' : ''}>
+                                            ${server.name}
+                                        </option>
+                                    `).join('')}
+                                </select>
+                                <div class="dropdown-arrow">▼</div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -579,12 +587,8 @@ async function loadSeasonSidebar(seriesId, seasonNumber) {
     }
 }
 
-async function changeServer(serverUrl, contentPath, serverIndex, contentType) {
+async function changeServer(serverUrl, contentType) {
     currentServerUrl = serverUrl;
-
-    const serverButtons = document.querySelectorAll('.server-selection button');
-    serverButtons.forEach(button => button.classList.remove('active'));
-    serverButtons[serverIndex].classList.add('active');
 
     if (contentType === 'movie' && movieId) {
         WatchMovie(movieId);

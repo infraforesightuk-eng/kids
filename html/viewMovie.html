@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,15 +11,15 @@
     <meta name="msapplication-navbutton-color" content="#000000">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <meta name="mobile-web-app-capable" content="yes">
-    
+
     <!-- ANTI-FORCED-DARK-MODE SCRIPT - Must run before page load -->
     <script>
         // Detect and counteract forced dark mode at rendering engine level
-        (function() {
+        (function () {
             'use strict';
-            
+
             let forcedDarkDetected = false;
-            
+
             function detectForcedDarkMode() {
                 const testDiv = document.createElement('div');
                 testDiv.style.cssText = `
@@ -33,23 +34,23 @@
                     pointer-events: none !important;
                 `;
                 document.documentElement.appendChild(testDiv);
-                
+
                 setTimeout(() => {
                     const computed = window.getComputedStyle(testDiv);
                     const bgColor = computed.backgroundColor;
                     const textColor = computed.color;
-                    
-                    if (bgColor.includes('0, 0, 0') || bgColor.includes('rgb(0') || 
+
+                    if (bgColor.includes('0, 0, 0') || bgColor.includes('rgb(0') ||
                         textColor.includes('255, 255, 255') || textColor.includes('rgb(255')) {
                         forcedDarkDetected = true;
                         console.log('🛡️ Forced dark mode detected - Activating countermeasures');
                         applyAntiForcedDarkMode();
                     }
-                    
+
                     testDiv.remove();
                 }, 100);
             }
-            
+
             function applyAntiForcedDarkMode() {
                 const style = document.createElement('style');
                 style.id = 'anti-forced-dark-mode';
@@ -75,7 +76,7 @@
                 document.head.appendChild(style);
                 setInterval(checkAndReapply, 1000);
             }
-            
+
             function checkAndReapply() {
                 if (!forcedDarkDetected) return;
                 const antiStyle = document.getElementById('anti-forced-dark-mode');
@@ -83,29 +84,31 @@
                     applyAntiForcedDarkMode();
                 }
             }
-            
+
             if (document.readyState === 'loading') {
                 document.addEventListener('DOMContentLoaded', detectForcedDarkMode);
             } else {
                 detectForcedDarkMode();
             }
-            
+
             setTimeout(detectForcedDarkMode, 500);
             setTimeout(detectForcedDarkMode, 1500);
-            
+
         })();
     </script>
-    
-    <title>MovieIGuess - Watch Movies & TV Shows</title>
+
+    <title>Nebula - Watch Movies & TV Shows</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="netflix-style.css">
     <link rel="stylesheet" href="search.css">
     <link rel="stylesheet" href="toast.css">
     <script src="https://kit.fontawesome.com/22dc8d85a3.js" crossorigin="anonymous"></script>
     <!-- Font Awesome CDN fallback (added) -->
-    <link id="fa-cdn-fallback" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <script>(function(){function loadCDN(){if(document.getElementById('fa-cdn-fallback'))return;var l=document.createElement('link');l.id='fa-cdn-fallback';l.rel='stylesheet';l.href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css';l.crossOrigin='anonymous';l.referrerPolicy='no-referrer';document.head.appendChild(l);}function isLoaded(){if(window.FontAwesome)return true;if(document.querySelector('svg.svg-inline--fa'))return true;try{var i=document.createElement('i');i.className='fa-solid fa-circle';i.style.position='absolute';i.style.visibility='hidden';document.body.appendChild(i);var ff=window.getComputedStyle(i).getPropertyValue('font-family')||'';var loaded=ff.toLowerCase().indexOf('fontawesome')!==-1||i.offsetWidth>0;document.body.removeChild(i);return loaded}catch(e){return false}}if(!isLoaded()){setTimeout(function(){if(!isLoaded())loadCDN();},1000);window.addEventListener('load',function(){if(!isLoaded())loadCDN();});}})();</script>
-    <link rel="icon" href="src/assets/logo.png">
+    <link id="fa-cdn-fallback" rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous"
+        referrerpolicy="no-referrer" />
+    <script>(function () { function loadCDN() { if (document.getElementById('fa-cdn-fallback')) return; var l = document.createElement('link'); l.id = 'fa-cdn-fallback'; l.rel = 'stylesheet'; l.href = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css'; l.crossOrigin = 'anonymous'; l.referrerPolicy = 'no-referrer'; document.head.appendChild(l); } function isLoaded() { if (window.FontAwesome) return true; if (document.querySelector('svg.svg-inline--fa')) return true; try { var i = document.createElement('i'); i.className = 'fa-solid fa-circle'; i.style.position = 'absolute'; i.style.visibility = 'hidden'; document.body.appendChild(i); var ff = window.getComputedStyle(i).getPropertyValue('font-family') || ''; var loaded = ff.toLowerCase().indexOf('fontawesome') !== -1 || i.offsetWidth > 0; document.body.removeChild(i); return loaded } catch (e) { return false } } if (!isLoaded()) { setTimeout(function () { if (!isLoaded()) loadCDN(); }, 1000); window.addEventListener('load', function () { if (!isLoaded()) loadCDN(); }); } })();</script>
+    <link rel="icon" href="src/assets/logo.svg">
     <script>
         tailwind.config = {
             theme: {
@@ -126,8 +129,10 @@
             color-scheme: light only !important;
             -webkit-color-scheme: light only !important;
         }
-        
-        *, *::before, *::after {
+
+        *,
+        *::before,
+        *::after {
             color-scheme: light only !important;
             -webkit-color-scheme: light only !important;
             forced-color-adjust: none !important;
@@ -138,17 +143,22 @@
             -ms-filter: none !important;
             -o-filter: none !important;
         }
-        
-        html, body {
+
+        html,
+        body {
             color-scheme: light only !important;
             -webkit-color-scheme: light only !important;
             forced-color-adjust: none !important;
             -webkit-forced-color-adjust: none !important;
             background-color: #000000 !important;
         }
-        
+
         /* IMAGES AND LOGOS: Prevent any color modifications */
-        img, svg, picture, canvas, video {
+        img,
+        svg,
+        picture,
+        canvas,
+        video {
             color-scheme: light only !important;
             -webkit-color-scheme: light only !important;
             forced-color-adjust: none !important;
@@ -161,11 +171,15 @@
             mix-blend-mode: normal !important;
             isolation: isolate !important;
         }
-        
+
         /* Specific logo protection */
-        .logo, [class*="logo"], #logo, 
-        img[src*="logo"], img[alt*="logo"], 
-        img[src*="Logo"], img[alt*="Logo"] {
+        .logo,
+        [class*="logo"],
+        #logo,
+        img[src*="logo"],
+        img[alt*="logo"],
+        img[src*="Logo"],
+        img[alt*="Logo"] {
             filter: none !important;
             -webkit-filter: none !important;
             forced-color-adjust: none !important;
@@ -173,10 +187,13 @@
             mix-blend-mode: normal !important;
             isolation: isolate !important;
         }
-        
+
         /* Block dark mode media queries COMPLETELY */
         @media (prefers-color-scheme: dark) {
-            *, *::before, *::after {
+
+            *,
+            *::before,
+            *::after {
                 color-scheme: light only !important;
                 -webkit-color-scheme: light only !important;
                 forced-color-adjust: none !important;
@@ -184,126 +201,145 @@
                 filter: none !important;
                 -webkit-filter: none !important;
             }
-            
-            html, body {
+
+            html,
+            body {
                 background-color: #000000 !important;
                 color: #ffffff !important;
             }
-            
-            img, svg, picture, canvas, video {
+
+            img,
+            svg,
+            picture,
+            canvas,
+            video {
                 filter: none !important;
                 -webkit-filter: none !important;
                 forced-color-adjust: none !important;
                 -webkit-forced-color-adjust: none !important;
             }
         }
-        
+
         /* Force all containers to respect original colors */
-        div, section, article, aside, main, header, footer, nav {
+        div,
+        section,
+        article,
+        aside,
+        main,
+        header,
+        footer,
+        nav {
             forced-color-adjust: none !important;
             -webkit-forced-color-adjust: none !important;
             filter: none !important;
             -webkit-filter: none !important;
         }
-        
+
         /* Lock all light colors and prevent dark mode conversion */
         .text-gray-400 {
             color: #9ca3af !important;
         }
-        
+
         .text-gray-300 {
             color: #d1d5db !important;
         }
-        
+
         .text-gray-200 {
             color: #e5e7eb !important;
         }
-        
+
         .text-gray-100 {
             color: #f3f4f6 !important;
         }
-        
+
         .bg-gray-800 {
             background-color: #1f2937 !important;
         }
-        
+
         .bg-gray-900 {
             background-color: #111827 !important;
         }
-        
+
         /* Lock Netflix brand colors */
         .text-netflix-red {
             color: #E50914 !important;
         }
-        
+
         .bg-netflix-red {
             background-color: #E50914 !important;
         }
-        
+
         .bg-netflix-black {
             background-color: #000000 !important;
         }
-        
+
         .bg-netflix-dark {
             background-color: #141414 !important;
         }
-        
+
         .text-white {
             color: #ffffff !important;
         }
-        
+
         .bg-black {
             background-color: #000000 !important;
         }
-        
+
         /* Force borders and outlines to maintain colors */
         .border-gray-600 {
             border-color: #4b5563 !important;
         }
-        
+
         .border-gray-700 {
             border-color: #374151 !important;
         }
-        
+
         /* Override any browser-imposed styles */
-        input, textarea, select, button {
+        input,
+        textarea,
+        select,
+        button {
             color-scheme: light only !important;
             -webkit-color-scheme: light only !important;
             forced-color-adjust: none !important;
             -webkit-forced-color-adjust: none !important;
         }
-        
+
         /* Prevent shadow color changes */
-        .shadow-lg, .shadow-xl, [class*="shadow-"] {
+        .shadow-lg,
+        .shadow-xl,
+        [class*="shadow-"] {
             forced-color-adjust: none !important;
             -webkit-forced-color-adjust: none !important;
         }
     </style>
 </head>
+
 <body class="bg-netflix-black text-white min-h-screen">
     <!-- Background Backdrop -->
     <div class="background fixed inset-0 bg-cover bg-center bg-no-repeat"></div>
     <div class="fixed inset-0 bg-netflix-black/70"></div>
-    
+
     <!-- Navigation -->
     <header class="navbar-glass fixed top-0 w-full z-50 transition-all duration-500" id="navbar">
-        <div class="relative z-10 flex flex-col lg:flex-row items-center justify-between px-4 lg:px-16 py-4 space-y-4 lg:space-y-0">
+        <div
+            class="relative z-10 flex flex-col lg:flex-row items-center justify-between px-4 lg:px-16 py-4 space-y-4 lg:space-y-0">
             <!-- Logo -->
             <div class="flex items-center space-x-8">
-                <h1 class="text-netflix-red text-2xl lg:text-3xl font-bold cursor-pointer hover:text-white transition-colors text-center lg:text-left flex items-center" onclick="home()">
-                    <img src="src/assets/logo.png" alt="MovieIGuess Logo" class="w-8 h-8 lg:w-10 lg:h-10 mr-2 object-contain">MovieIGuess
+                <h1 class="text-netflix-red text-2xl lg:text-3xl font-bold cursor-pointer hover:text-white transition-colors text-center lg:text-left flex items-center"
+                    onclick="home()">
+                    <img src="src/assets/logo.svg" alt="Nebula Logo"
+                        class="w-8 h-8 lg:w-10 lg:h-10 mr-2 object-contain">Nebula
                 </h1>
             </div>
-            
+
             <!-- Search Bar -->
             <div class="flex items-center space-x-4 w-full lg:w-auto justify-center lg:justify-end">
                 <div class="relative w-full max-w-md lg:w-64">
-                    <input 
-                        type="text" 
-                        placeholder="Search a movie/series"
-                        class="search-input text-white placeholder-gray-400 rounded-md px-4 py-2 w-full focus:outline-none focus:ring-2 focus:ring-netflix-red focus:border-transparent transition-all"
-                    >
-                    <i class="fa-solid fa-magnifying-glass absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 cursor-pointer hover:text-white transition-colors"></i>
+                    <input type="text" placeholder="Search a movie/series"
+                        class="search-input text-white placeholder-gray-400 rounded-md px-4 py-2 w-full focus:outline-none focus:ring-2 focus:ring-netflix-red focus:border-transparent transition-all">
+                    <i
+                        class="fa-solid fa-magnifying-glass absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 cursor-pointer hover:text-white transition-colors"></i>
                 </div>
             </div>
         </div>
@@ -324,14 +360,20 @@
                 <div class="relative mb-8 lg:mb-12 rounded-lg overflow-hidden">
                     <div class="relative h-[40vh] sm:h-[50vh] lg:h-[70vh]">
                         <img id="backdropImage" src="" alt="" class="w-full h-full object-cover">
-                        <div class="absolute inset-0 bg-gradient-to-t from-netflix-black via-netflix-black/20 to-transparent"></div>
-                        <div class="absolute inset-0 bg-gradient-to-r from-netflix-black/90 via-netflix-black/40 to-netflix-black/20"></div>
-                        
+                        <div
+                            class="absolute inset-0 bg-gradient-to-t from-netflix-black via-netflix-black/20 to-transparent">
+                        </div>
+                        <div
+                            class="absolute inset-0 bg-gradient-to-r from-netflix-black/90 via-netflix-black/40 to-netflix-black/20">
+                        </div>
+
                         <!-- Movie Info Overlay -->
                         <div class="absolute bottom-0 left-0 right-0 p-4 sm:p-6 lg:p-12">
                             <div class="max-w-4xl">
-                                <h1 id="movieTitle" class="text-2xl sm:text-3xl lg:text-6xl font-bold mb-2 sm:mb-4 leading-tight"></h1>
-                                <div class="flex flex-wrap items-center gap-2 sm:gap-4 lg:gap-6 mb-4 sm:mb-6 text-sm sm:text-base lg:text-lg">
+                                <h1 id="movieTitle"
+                                    class="text-2xl sm:text-3xl lg:text-6xl font-bold mb-2 sm:mb-4 leading-tight"></h1>
+                                <div
+                                    class="flex flex-wrap items-center gap-2 sm:gap-4 lg:gap-6 mb-4 sm:mb-6 text-sm sm:text-base lg:text-lg">
                                     <div id="movieRating" class="flex items-center text-yellow-400">
                                         <i class="fa-solid fa-star mr-1 sm:mr-2"></i>
                                         <span class="text-white font-semibold">0.0</span>
@@ -340,24 +382,29 @@
                                     <span id="movieRuntime" class="text-gray-300"></span>
                                     <span id="movieGenres" class="text-gray-300 hidden sm:inline"></span>
                                 </div>
-                                
+
                                 <!-- Action Buttons -->
                                 <div class="flex flex-wrap gap-2 sm:gap-4">
-                                    <button id="playButton" class="netflix-button bg-white text-black px-4 sm:px-6 lg:px-8 py-2 sm:py-3 rounded font-semibold hover:bg-gray-200 transition-colors flex items-center text-sm sm:text-base">
+                                    <button id="playButton"
+                                        class="netflix-button bg-white text-black px-4 sm:px-6 lg:px-8 py-2 sm:py-3 rounded font-semibold hover:bg-gray-200 transition-colors flex items-center text-sm sm:text-base">
                                         <i class="fa-solid fa-play mr-1 sm:mr-2"></i>
                                         Play
                                     </button>
-                                    <button id="trailerButton" onclick="openTrailerModal()" class="netflix-button bg-gray-600/70 text-white px-4 sm:px-6 lg:px-8 py-2 sm:py-3 rounded font-semibold hover:bg-gray-600 transition-colors flex items-center text-sm sm:text-base">
+                                    <button id="trailerButton" onclick="openTrailerModal()"
+                                        class="netflix-button bg-gray-600/70 text-white px-4 sm:px-6 lg:px-8 py-2 sm:py-3 rounded font-semibold hover:bg-gray-600 transition-colors flex items-center text-sm sm:text-base">
                                         <i class="fa-solid fa-video mr-1 sm:mr-2"></i>
                                         <span class="hidden sm:inline">Trailer</span>
                                         <span class="sm:hidden">Trailer</span>
                                     </button>
-                                    <button class="netflix-button bg-gray-600/70 text-white px-4 sm:px-6 lg:px-8 py-2 sm:py-3 rounded font-semibold hover:bg-gray-600 transition-colors flex items-center text-sm sm:text-base" onclick="showDevToast('My List')">
+                                    <button
+                                        class="netflix-button bg-gray-600/70 text-white px-4 sm:px-6 lg:px-8 py-2 sm:py-3 rounded font-semibold hover:bg-gray-600 transition-colors flex items-center text-sm sm:text-base"
+                                        onclick="showDevToast('My List')">
                                         <i class="fa-solid fa-plus mr-1 sm:mr-2"></i>
                                         <span class="hidden sm:inline">My List</span>
                                         <span class="sm:hidden">List</span>
                                     </button>
-                                    <button onclick="openShareModal()" class="netflix-button bg-gray-600/70 text-white px-4 sm:px-6 lg:px-8 py-2 sm:py-3 rounded font-semibold hover:bg-gray-600 transition-colors flex items-center text-sm sm:text-base">
+                                    <button onclick="openShareModal()"
+                                        class="netflix-button bg-gray-600/70 text-white px-4 sm:px-6 lg:px-8 py-2 sm:py-3 rounded font-semibold hover:bg-gray-600 transition-colors flex items-center text-sm sm:text-base">
                                         <i class="fa-solid fa-share mr-1 sm:mr-2"></i>
                                         Share
                                     </button>
@@ -374,8 +421,10 @@
                         <div class="lg:sticky lg:top-24">
                             <!-- Quick Info Card -->
                             <div class="bg-netflix-gray/50 rounded-lg p-4 sm:p-6 backdrop-blur-sm">
-                                <h3 class="text-lg lg:text-xl font-semibold mb-3 lg:mb-4 text-white">Movie Information</h3>
-                                <div class="grid grid-cols-2 lg:grid-cols-1 gap-2 lg:gap-3 text-sm lg:text-base text-gray-300">
+                                <h3 class="text-lg lg:text-xl font-semibold mb-3 lg:mb-4 text-white">Movie Information
+                                </h3>
+                                <div
+                                    class="grid grid-cols-2 lg:grid-cols-1 gap-2 lg:gap-3 text-sm lg:text-base text-gray-300">
                                     <div class="flex flex-col lg:flex-row lg:justify-between">
                                         <span class="text-gray-400">Release Date:</span>
                                         <span id="releaseDate" class="text-white"></span>
@@ -425,8 +474,10 @@
 
                         <!-- Production Companies -->
                         <div class="mb-6 lg:mb-8">
-                            <h3 class="text-lg lg:text-xl font-semibold mb-3 lg:mb-4 text-white">Production Companies</h3>
-                            <div id="productionCompanies" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"></div>
+                            <h3 class="text-lg lg:text-xl font-semibold mb-3 lg:mb-4 text-white">Production Companies
+                            </h3>
+                            <div id="productionCompanies" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                            </div>
                         </div>
 
                         <!-- Cast & Crew (if available) -->
@@ -447,17 +498,18 @@
                             Similar
                         </h2>
                     </div>
-                    
+
                     <!-- Tabs for Movies and TV Shows -->
                     <div class="flex space-x-1 mb-4 bg-netflix-gray/30 rounded-lg p-1 w-fit">
-                        <button id="moviesTab" class="tab-button active px-4 py-2 rounded-md font-medium text-sm transition-all">
+                        <button id="moviesTab"
+                            class="tab-button active px-4 py-2 rounded-md font-medium text-sm transition-all">
                             Movies
                         </button>
                         <button id="tvTab" class="tab-button px-4 py-2 rounded-md font-medium text-sm transition-all">
                             TV Shows
                         </button>
                     </div>
-                    
+
                     <!-- Content containers -->
                     <div class="overflow-hidden">
                         <div id="similarMovies" class="similar-content active similar-movies-grid">
@@ -475,7 +527,8 @@
                 <i class="fa-solid fa-exclamation-triangle text-6xl text-netflix-red mb-4"></i>
                 <h2 class="text-2xl font-bold mb-4 text-white">Movie Not Found</h2>
                 <p class="text-gray-400 mb-8">Sorry, we couldn't find the movie you're looking for.</p>
-                <button onclick="window.location.href='index.html'" class="netflix-button bg-netflix-red text-white px-8 py-3 rounded font-semibold hover:bg-red-700 transition-colors">
+                <button onclick="window.location.href='index.html'"
+                    class="netflix-button bg-netflix-red text-white px-8 py-3 rounded font-semibold hover:bg-red-700 transition-colors">
                     Back to Home
                 </button>
             </div>
@@ -486,43 +539,39 @@
     <div id="shareModal" class="fixed inset-0 z-50 hidden">
         <!-- Modal Backdrop -->
         <div class="fixed inset-0 bg-black bg-opacity-75 transition-opacity" onclick="closeShareModal()"></div>
-        
+
         <!-- Modal Content -->
         <div class="fixed inset-0 flex items-center justify-center p-4">
-            <div class="share-modal-content bg-black bg-opacity-90 backdrop-filter backdrop-blur-lg rounded-lg max-w-md w-full mx-4 relative border border-gray-600">
+            <div
+                class="share-modal-content bg-black bg-opacity-90 backdrop-filter backdrop-blur-lg rounded-lg max-w-md w-full mx-4 relative border border-gray-600">
                 <!-- Close Button -->
-                <button onclick="closeShareModal()" class="absolute top-4 right-4 z-10 bg-black bg-opacity-50 rounded-full w-10 h-10 flex items-center justify-center hover:bg-opacity-75 transition-all">
+                <button onclick="closeShareModal()"
+                    class="absolute top-4 right-4 z-10 bg-black bg-opacity-50 rounded-full w-10 h-10 flex items-center justify-center hover:bg-opacity-75 transition-all">
                     <i class="fa-solid fa-times text-white text-lg"></i>
                 </button>
-                
+
                 <!-- Modal Header -->
                 <div class="p-6 pb-4">
                     <h2 class="text-xl font-bold text-white mb-4 flex items-center">
                         <i class="fa-solid fa-share mr-2 text-netflix-red"></i>
                         Share this movie
                     </h2>
-                    
+
                     <!-- URL Display -->
                     <div class="mb-4">
                         <label class="block text-sm font-medium text-gray-300 mb-2">Movie Link</label>
                         <div class="flex">
-                            <input 
-                                id="shareUrl" 
-                                type="text" 
-                                readonly 
+                            <input id="shareUrl" type="text" readonly
                                 class="flex-1 bg-gray-800 bg-opacity-50 border border-gray-600 rounded-l-lg px-3 py-2 text-white text-sm focus:outline-none focus:ring-2 focus:ring-netflix-red focus:border-transparent"
-                                value=""
-                            >
-                            <button 
-                                onclick="copyToClipboard()" 
-                                id="copyButton"
-                                class="bg-netflix-red hover:bg-red-700 text-white px-4 py-2 rounded-r-lg transition-colors flex items-center justify-center min-w-[80px]"
-                            >
+                                value="">
+                            <button onclick="copyToClipboard()" id="copyButton"
+                                class="bg-netflix-red hover:bg-red-700 text-white px-4 py-2 rounded-r-lg transition-colors flex items-center justify-center min-w-[80px]">
                                 <i class="fa-solid fa-copy mr-1"></i>
                                 Copy
                             </button>
                         </div>
-                        <p class="text-xs text-gray-400 mt-2">Share this link with others to let them discover this movie</p>
+                        <p class="text-xs text-gray-400 mt-2">Share this link with others to let them discover this
+                            movie</p>
                     </div>
                 </div>
             </div>
@@ -533,27 +582,25 @@
     <div id="trailerModal" class="fixed inset-0 z-50 hidden">
         <!-- Modal Backdrop -->
         <div class="fixed inset-0 bg-black bg-opacity-90 transition-opacity" onclick="closeTrailerModal()"></div>
-        
+
         <!-- Modal Content -->
         <div class="fixed inset-0 flex items-center justify-center p-4">
-            <div class="trailer-modal-content bg-black bg-opacity-95 backdrop-filter backdrop-blur-lg rounded-lg max-w-3xl w-full mx-4 relative border border-gray-600">
+            <div
+                class="trailer-modal-content bg-black bg-opacity-95 backdrop-filter backdrop-blur-lg rounded-lg max-w-3xl w-full mx-4 relative border border-gray-600">
                 <!-- Close Button -->
-                <button onclick="closeTrailerModal()" class="absolute top-4 right-4 z-20 bg-black bg-opacity-50 rounded-full w-10 h-10 flex items-center justify-center hover:bg-opacity-75 transition-all">
+                <button onclick="closeTrailerModal()"
+                    class="absolute top-4 right-4 z-20 bg-black bg-opacity-50 rounded-full w-10 h-10 flex items-center justify-center hover:bg-opacity-75 transition-all">
                     <i class="fa-solid fa-times text-white text-lg"></i>
                 </button>
-                
+
                 <!-- Video Container -->
                 <div class="relative w-full" style="padding-bottom: 50%; /* Reduced aspect ratio for better fit */">
-                    <iframe 
-                        id="trailerIframe" 
-                        class="absolute top-0 left-0 w-full h-full rounded-lg" 
-                        src="" 
-                        frameborder="0" 
-                        allowfullscreen
+                    <iframe id="trailerIframe" class="absolute top-0 left-0 w-full h-full rounded-lg" src=""
+                        frameborder="0" allowfullscreen
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture">
                     </iframe>
                 </div>
-                
+
                 <!-- Trailer Info -->
                 <div class="p-4">
                     <h3 id="trailerTitle" class="text-lg font-bold text-white mb-1"></h3>
@@ -570,7 +617,7 @@
             <button id="searchCloseBtn" class="modal-back-button">
                 <i class="fa-solid fa-times"></i>
             </button>
-            
+
             <!-- Search Header -->
             <div class="search-header">
                 <h2 id="searchResultsTitle">Search Results</h2>
@@ -581,12 +628,12 @@
                     <button class="filter-btn" data-type="person">People</button>
                 </div>
             </div>
-            
+
             <!-- Search Results Container -->
             <div id="searchResultsContainer" class="search-results-container">
                 <div class="loading">Loading...</div>
             </div>
-            
+
             <!-- Pagination Container -->
             <div id="searchPaginationContainer" class="pagination-container"></div>
         </div>
@@ -597,23 +644,26 @@
         <div class="px-4 lg:px-16">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
                 <div class="col-span-1 md:col-span-2">
-                    <h3 class="text-netflix-red text-2xl font-bold mb-4">MovieIGuess</h3>
+                    <h3 class="text-netflix-red text-2xl font-bold mb-4">Nebula</h3>
                     <p class="text-gray-400 mb-6 max-w-md">
-                        Your ultimate destination for discovering amazing movies and TV shows. 
+                        Your ultimate destination for discovering amazing movies and TV shows.
                         Stream, watch, and enjoy entertainment like never before.
                     </p>
                 </div>
-                
+
                 <div>
                     <h4 class="text-white font-semibold mb-4">Quick Links</h4>
                     <ul class="space-y-2 text-gray-400">
                         <li><a href="index.html" class="hover:text-white transition-colors">Home</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors" onclick="showDevToast('Movie List')">Movies</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors" onclick="showDevToast('TV Show List')">TV Shows</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors" onclick="showDevToast('My List')">My List</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors"
+                                onclick="showDevToast('Movie List')">Movies</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors"
+                                onclick="showDevToast('TV Show List')">TV Shows</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors" onclick="showDevToast('My List')">My
+                                List</a></li>
                     </ul>
                 </div>
-                
+
                 <div>
                     <h4 class="text-white font-semibold mb-4">Connect With Us</h4>
                     <div class="flex space-x-4">
@@ -629,19 +679,20 @@
                     </div>
                 </div>
             </div>
-            
+
             <div class="border-t border-gray-700 mt-12 pt-8 text-center">
-                <p class="text-gray-400">&copy; 2024 MovieIGuess. All rights reserved. | Privacy Policy | Terms of Service</p>
+                <p class="text-gray-400">&copy; 2024 Nebula. All rights reserved. | Privacy Policy | Terms of
+                    Service</p>
             </div>
         </div>
     </footer>
     <script>
-        function home(){
-            window.location.href="index.html";
+        function home() {
+            window.location.href = "index.html";
         }
-        function ins(){window.open('https://www.instagram.com/unkown-user/', '_blank');}
-        function lin(){window.open('https://www.linkedin.com/in/christian-signo-070733323/', '_blank')}
-        function git(){window.open('https://github.com/Xtian69420', '_blank')}
+        function ins() { window.open('https://www.instagram.com/unkown-user/', '_blank'); }
+        function lin() { window.open('https://www.linkedin.com/in/christian-signo-070733323/', '_blank') }
+        function git() { window.open('https://github.com/Xtian69420', '_blank') }
     </script>
     <script src="src/view.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
@@ -653,6 +704,7 @@
             -ms-overflow-style: none;
             scrollbar-width: none;
         }
+
         .scrollbar-hide::-webkit-scrollbar {
             display: none;
         }
@@ -688,44 +740,61 @@
         }
 
         /* Body and HTML specific scrollbar */
-        html, body {
+        html,
+        body {
             scrollbar-width: thin !important;
             scrollbar-color: rgba(255, 255, 255, 0.3) transparent !important;
         }
 
-        html::-webkit-scrollbar, body::-webkit-scrollbar {
+        html::-webkit-scrollbar,
+        body::-webkit-scrollbar {
             width: 6px !important;
             background: transparent !important;
         }
 
-        html::-webkit-scrollbar-track, body::-webkit-scrollbar-track {
+        html::-webkit-scrollbar-track,
+        body::-webkit-scrollbar-track {
             background: transparent !important;
         }
 
-        html::-webkit-scrollbar-thumb, body::-webkit-scrollbar-thumb {
+        html::-webkit-scrollbar-thumb,
+        body::-webkit-scrollbar-thumb {
             background: rgba(255, 255, 255, 0.3) !important;
             border-radius: 10px !important;
             transition: background 0.3s ease !important;
         }
 
-        html::-webkit-scrollbar-thumb:hover, body::-webkit-scrollbar-thumb:hover {
+        html::-webkit-scrollbar-thumb:hover,
+        body::-webkit-scrollbar-thumb:hover {
             background: rgba(255, 255, 255, 0.5) !important;
         }
 
         /* Hide scrollbars for movie/TV card containers while keeping them scrollable */
-        .movie-container, .series-container, .anime-container, 
-        .similar-movies-container, .similar-tv-container, 
-        .trending-container, .popular-container, .top-rated-container,
-        .scrollbar-hide, .similar-movies-grid, .similar-content {
+        .movie-container,
+        .series-container,
+        .anime-container,
+        .similar-movies-container,
+        .similar-tv-container,
+        .trending-container,
+        .popular-container,
+        .top-rated-container,
+        .scrollbar-hide,
+        .similar-movies-grid,
+        .similar-content {
             -ms-overflow-style: none !important;
             scrollbar-width: none !important;
         }
 
-        .movie-container::-webkit-scrollbar, .series-container::-webkit-scrollbar, 
-        .anime-container::-webkit-scrollbar, .similar-movies-container::-webkit-scrollbar, 
-        .similar-tv-container::-webkit-scrollbar, .trending-container::-webkit-scrollbar,
-        .popular-container::-webkit-scrollbar, .top-rated-container::-webkit-scrollbar,
-        .scrollbar-hide::-webkit-scrollbar, .similar-movies-grid::-webkit-scrollbar,
+        .movie-container::-webkit-scrollbar,
+        .series-container::-webkit-scrollbar,
+        .anime-container::-webkit-scrollbar,
+        .similar-movies-container::-webkit-scrollbar,
+        .similar-tv-container::-webkit-scrollbar,
+        .trending-container::-webkit-scrollbar,
+        .popular-container::-webkit-scrollbar,
+        .top-rated-container::-webkit-scrollbar,
+        .scrollbar-hide::-webkit-scrollbar,
+        .similar-movies-grid::-webkit-scrollbar,
         .similar-content::-webkit-scrollbar {
             display: none !important;
         }
@@ -813,25 +882,25 @@
             border: none;
             cursor: pointer;
         }
-        
+
         .tab-button.active {
             background: #E50914;
             color: white;
         }
-        
+
         .tab-button:hover:not(.active) {
             color: white;
             background: rgba(229, 9, 20, 0.3);
         }
-        
+
         .similar-content {
             transition: opacity 0.3s ease;
         }
-        
+
         .similar-content.hidden {
             display: none !important;
         }
-        
+
         .similar-content.active {
             display: flex !important;
         }
@@ -845,8 +914,10 @@
             overflow-y: hidden;
             scroll-behavior: smooth;
             -webkit-overflow-scrolling: touch;
-            scrollbar-width: none; /* Firefox */
-            -ms-overflow-style: none; /* Internet Explorer 10+ */
+            scrollbar-width: none;
+            /* Firefox */
+            -ms-overflow-style: none;
+            /* Internet Explorer 10+ */
         }
 
         /* Hide scrollbar for webkit browsers */
@@ -877,7 +948,7 @@
                 width: 180px;
                 height: 340px;
             }
-            
+
             .similar-movie-poster {
                 height: 260px !important;
             }
@@ -889,11 +960,11 @@
                 width: 160px;
                 height: 225px;
             }
-            
+
             .similar-movie-poster {
                 height: 150px !important;
             }
-            
+
             .similar-movies-grid {
                 gap: 1rem !important;
                 padding: 1.5rem 0 !important;
@@ -906,11 +977,11 @@
                 width: 150px;
                 height: 310px;
             }
-            
+
             .similar-movie-poster {
                 height: 200px !important;
             }
-            
+
             .similar-movies-grid {
                 gap: 0.8rem !important;
             }
@@ -972,8 +1043,13 @@
 
         /* Loading animation */
         @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
         }
 
         .animate-spin {
@@ -1006,29 +1082,29 @@
             max-width: 100%;
             margin: 0 auto;
         }
-        
+
         .similar-content {
             justify-content: flex-start;
             align-items: flex-start;
             padding-left: 0.5rem;
             padding-right: 0.5rem;
         }
-        
+
         /* Ensure cards don't get cut off */
         .similar-content::-webkit-scrollbar {
             height: 6px;
         }
-        
+
         .similar-content::-webkit-scrollbar-track {
             background: rgba(255, 255, 255, 0.1);
             border-radius: 3px;
         }
-        
+
         .similar-content::-webkit-scrollbar-thumb {
             background: #E50914;
             border-radius: 3px;
         }
-        
+
         .similar-content::-webkit-scrollbar-thumb:hover {
             background: #B81D24;
         }
@@ -1039,46 +1115,46 @@
                 padding: 8px 16px;
                 font-size: 14px;
             }
-            
+
             .genre-tag {
                 padding: 6px 12px;
                 font-size: 12px;
             }
-            
+
             .similar-movie-card {
                 min-width: 140px;
                 width: 140px;
                 flex-shrink: 0;
             }
-            
+
             .similar-movie-card img {
                 height: 200px;
             }
-            
+
             .similar-movie-info {
                 padding: 8px;
             }
-            
+
             .similar-movie-title {
                 font-size: 12px;
                 line-height: 1.2;
             }
-            
+
             .similar-movie-rating {
                 font-size: 11px;
             }
-            
+
             /* Better mobile hero section */
             .container {
                 padding-left: 1rem;
                 padding-right: 1rem;
             }
-            
+
             /* Mobile info card improvements */
             .production-card {
                 padding: 12px;
             }
-            
+
             .production-card img {
                 max-height: 40px;
             }
@@ -1089,16 +1165,16 @@
                 padding: 6px 12px;
                 font-size: 13px;
             }
-            
+
             .similar-movie-card {
                 min-width: 120px;
                 width: 120px;
             }
-            
+
             .similar-movie-card img {
                 height: 170px;
             }
-            
+
             .container {
                 padding-left: 0.75rem;
                 padding-right: 0.75rem;
@@ -1150,7 +1226,8 @@
             }
 
             /* Additional spacing for main content areas */
-            .mb-6, .mb-8 {
+            .mb-6,
+            .mb-8 {
                 margin-bottom: 2rem !important;
             }
 
@@ -1173,11 +1250,11 @@
         #shareModal {
             display: none;
         }
-        
+
         #shareModal:not(.hidden) {
             display: flex !important;
         }
-        
+
         .share-modal-content {
             background: rgba(0, 0, 0, 0.95);
             backdrop-filter: blur(20px);
@@ -1191,11 +1268,11 @@
         #trailerModal {
             display: none;
         }
-        
+
         #trailerModal:not(.hidden) {
             display: flex !important;
         }
-        
+
         .trailer-modal-content {
             background: rgba(0, 0, 0, 0.95);
             backdrop-filter: blur(20px);
@@ -1212,6 +1289,7 @@
                 opacity: 0;
                 transform: scale(0.9) translateY(20px);
             }
+
             to {
                 opacity: 1;
                 transform: scale(1) translateY(0);
@@ -1247,7 +1325,7 @@
             console.log('Opening share modal'); // Debug log
             const shareUrl = document.getElementById('shareUrl');
             const shareModal = document.getElementById('shareModal');
-            
+
             if (shareUrl && shareModal) {
                 shareUrl.value = window.location.href;
                 shareModal.classList.remove('hidden');
@@ -1271,27 +1349,27 @@
         function copyToClipboard() {
             const shareUrl = document.getElementById('shareUrl');
             const copyButton = document.getElementById('copyButton');
-            
+
             // Select and copy the text
             shareUrl.select();
             shareUrl.setSelectionRange(0, 99999); // For mobile devices
-            
+
             try {
                 document.execCommand('copy');
-                
+
                 // Visual feedback
                 const originalContent = copyButton.innerHTML;
                 copyButton.innerHTML = '<i class="fa-solid fa-check mr-1"></i>Copied!';
                 copyButton.classList.remove('bg-netflix-red', 'hover:bg-red-700');
                 copyButton.classList.add('bg-green-600', 'hover:bg-green-700');
-                
+
                 // Reset after 2 seconds
                 setTimeout(() => {
                     copyButton.innerHTML = originalContent;
                     copyButton.classList.remove('bg-green-600', 'hover:bg-green-700');
                     copyButton.classList.add('bg-netflix-red', 'hover:bg-red-700');
                 }, 2000);
-                
+
             } catch (err) {
                 console.error('Failed to copy: ', err);
                 // Fallback for modern browsers
@@ -1302,19 +1380,19 @@
         }
 
         // Close modal when clicking outside (but not on modal open)
-        document.addEventListener('click', function(event) {
+        document.addEventListener('click', function (event) {
             const shareModal = document.getElementById('shareModal');
             const shareModalContent = document.querySelector('.share-modal-content');
             const trailerModal = document.getElementById('trailerModal');
             const trailerModalContent = document.querySelector('.trailer-modal-content');
-            
+
             // Only close if modal is open and click is outside modal content
             if (shareModal && !shareModal.classList.contains('hidden')) {
                 if (!shareModalContent.contains(event.target) && !event.target.closest('[onclick*="openShareModal"]')) {
                     closeShareModal();
                 }
             }
-            
+
             if (trailerModal && !trailerModal.classList.contains('hidden')) {
                 if (!trailerModalContent.contains(event.target) && !event.target.closest('#trailerButton')) {
                     closeTrailerModal();
@@ -1323,7 +1401,7 @@
         });
 
         // Close modal with Escape key
-        document.addEventListener('keydown', function(event) {
+        document.addEventListener('keydown', function (event) {
             if (event.key === 'Escape') {
                 const shareModal = document.getElementById('shareModal');
                 if (shareModal && !shareModal.classList.contains('hidden')) {
@@ -1350,12 +1428,12 @@
         function closeTrailerModal() {
             const trailerModal = document.getElementById('trailerModal');
             const trailerIframe = document.getElementById('trailerIframe');
-            
+
             if (trailerModal) {
                 trailerModal.classList.add('hidden');
                 trailerModal.style.display = 'none';
                 document.body.style.overflow = 'auto';
-                
+
                 // Stop the video by clearing the src
                 if (trailerIframe) {
                     trailerIframe.src = '';
@@ -1366,7 +1444,7 @@
         function playTrailer(trailerKey, title) {
             const trailerIframe = document.getElementById('trailerIframe');
             const trailerTitle = document.getElementById('trailerTitle');
-            
+
             if (trailerIframe && trailerKey) {
                 // Set initial volume to 45% and quality to 1080p with additional quality parameters
                 trailerIframe.src = `https://www.youtube.com/embed/${trailerKey}?autoplay=1&rel=0&showinfo=0&enablejsapi=1&volume=45&vq=hd1080&hd=1&quality=hd1080`;
@@ -1390,4 +1468,5 @@
         }
     </script>
 </body>
+
 </html>

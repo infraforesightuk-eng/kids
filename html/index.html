@@ -128,7 +128,7 @@
         })();
     </script>
 
-    <title>MovieIGuess - Discover Amazing Movies & TV Shows</title>
+    <title>Nebula - Discover Amazing Movies & TV Shows</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
     <link rel="stylesheet" href="netflix-style.css">
@@ -141,7 +141,7 @@
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous"
         referrerpolicy="no-referrer" />
     <script>(function () { function loadCDN() { if (document.getElementById('fa-cdn-fallback')) return; var l = document.createElement('link'); l.id = 'fa-cdn-fallback'; l.rel = 'stylesheet'; l.href = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css'; l.crossOrigin = 'anonymous'; l.referrerPolicy = 'no-referrer'; document.head.appendChild(l); } function isLoaded() { if (window.FontAwesome) return true; if (document.querySelector('svg.svg-inline--fa')) return true; try { var i = document.createElement('i'); i.className = 'fa-solid fa-circle'; i.style.position = 'absolute'; i.style.visibility = 'hidden'; document.body.appendChild(i); var ff = window.getComputedStyle(i).getPropertyValue('font-family') || ''; var loaded = ff.toLowerCase().indexOf('fontawesome') !== -1 || i.offsetWidth > 0; document.body.removeChild(i); return loaded } catch (e) { return false } } if (!isLoaded()) { setTimeout(function () { if (!isLoaded()) loadCDN(); }, 1000); window.addEventListener('load', function () { if (!isLoaded()) loadCDN(); }); } })();</script>
-    <link rel="icon" href="src/assets/logo.png">
+    <link rel="icon" href="src/assets/logo.svg">
     <script>
         tailwind.config = {
             theme: {
@@ -758,7 +758,7 @@
         <div class="flex flex-col items-center space-y-8">
             <!-- Logo with animation -->
             <div id="logoContainer" class="opacity-0 transform scale-50">
-                <img src="src/assets/logo.png" alt="MovieIGuess Logo" class="w-24 h-24 lg:w-32 lg:h-32 object-contain">
+                <img src="src/assets/logo.svg" alt="Nebula Logo" class="w-24 h-24 lg:w-32 lg:h-32 object-contain">
             </div>
 
             <!-- Typing Text Container -->
@@ -781,8 +781,8 @@
                     class="flex flex-col lg:flex-row items-center space-y-4 lg:space-y-0 lg:space-x-8 w-full lg:w-auto">
                     <h1 class="text-netflix-red text-2xl lg:text-3xl font-bold cursor-pointer hover:text-white transition-colors text-center lg:text-left flex items-center"
                         onclick="home()">
-                        <img src="src/assets/logo.png" alt="MovieIGuess Logo"
-                            class="w-8 h-8 lg:w-10 lg:h-10 mr-2 object-contain">MovieIGuess
+                        <img src="src/assets/logo.svg" alt="Nebula Logo"
+                            class="w-8 h-8 lg:w-10 lg:h-10 mr-2 object-contain">Nebula
                     </h1>
                     <!-- Desktop Navigation -->
                     <nav class="hidden lg:flex space-x-6">
@@ -1094,7 +1094,7 @@
             <div class="px-4 lg:px-16">
                 <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
                     <div class="col-span-1 md:col-span-2">
-                        <h3 class="text-netflix-red text-2xl font-bold mb-4">MovieIGuess</h3>
+                        <h3 class="text-netflix-red text-2xl font-bold mb-4">Nebula</h3>
                         <p class="text-gray-400 mb-6 max-w-md">
                             Your ultimate destination for discovering amazing movies and TV shows.
                             Stream, watch, and enjoy entertainment like never before.
@@ -1131,7 +1131,7 @@
                 </div>
 
                 <div class="border-t border-gray-700 mt-12 pt-8 text-center">
-                    <p class="text-gray-400">&copy; 2024 MovieIGuess. All rights reserved. | Privacy Policy | Terms of
+                    <p class="text-gray-400">&copy; 2024 Nebula. All rights reserved. | Privacy Policy | Terms of
                         Service</p>
                 </div>
             </div>
@@ -2276,7 +2276,7 @@
 
         // Also add subtle glow to header logo
         function addHeaderLogoGlow() {
-            const headerLogo = document.querySelector('header img[alt="MovieIGuess Logo"]');
+            const headerLogo = document.querySelector('header img[alt="Nebula Logo"]');
             if (headerLogo) {
                 headerLogo.style.filter = `
                 drop-shadow(0 0 8px rgba(229, 9, 20, 0.4))

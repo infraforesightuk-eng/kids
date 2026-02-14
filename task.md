@@ -1,0 +1,25 @@
+# Task: Enhance Content Discovery and Filtering
+
+- [/] Create implementation plan <!-- id: 0 -->
+- [x] Implement UI for filters in `html/seeall.html` <!-- id: 1 -->
+  - [x] Add Provider and Genre dropdowns
+  - [x] Add Sort, Era, Rating, and Vibe specific UI
+- [x] Implement logic in `html/src/see-all.js` <!-- id: 2 -->
+  - [x] Define top providers and fetch genres <!-- id: 3 -->
+  - [x] Implement Vibe, Era, and Sort logic <!-- id: 7 -->
+  - [x] Update `fetchData` function to include filter parameters <!-- id: 4 -->
+  - [x] Add event listeners for filters <!-- id: 5 -->
+- [x] Verify changes <!-- id: 6 -->
+- [x] Rebrand site from "MovieIGuess" <!-- id: 8 -->
+  - [x] Choose new name (Selected: Nebula)
+  - [x] Replace all occurrences in code
+  - [x] Update titles and metadata
+- [x] Update Logo <!-- id: 9 -->
+  - [x] Generate new Nebula logo
+  - [x] Replace `src/assets/logo.png`
+- [x] Update Server Selection & Defaults <!-- id: 10 -->
+  - [x] Make 'Premium' the default server in `watch.js`
+  - [x] Replace server buttons with dropdown in `watch.js`
+  - [x] Style the new dropdown in `watch.css`
+- [x] Verify Server selection changes <!-- id: 11 -->
+- [x] Revert Default Server to Netflix for stability on production domain <!-- id: 12 -->
