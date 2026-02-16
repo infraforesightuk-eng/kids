@@ -322,12 +322,12 @@ async function Home() {
         showError(container1, 'Failed to load TV shows. Please check your internet connection.');
     }
 
-    // ========== ANIME ==========
+    // ========== ANIMATION ==========
     try {
-        const response = await fetch(`https://api.themoviedb.org/3/discover/tv?api_key=${API_KEY}&with_genres=16`);
+        const response = await fetch(`https://api.themoviedb.org/3/discover/tv?api_key=${API_KEY}&with_genres=16&certification_country=US&certification.lte=TV-14`);
         const data = await response.json();
 
-        console.log('Anime:', data);
+        console.log('Animation:', data);
 
         // Clear loading skeletons from anime container
         container2.innerHTML = '';

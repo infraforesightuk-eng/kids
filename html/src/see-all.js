@@ -13,6 +13,7 @@ const sortSelect = document.getElementById('sortSelect');
 const eraSelect = document.getElementById('eraSelect');
 const ratingSelect = document.getElementById('ratingSelect');
 const vibeSelect = document.getElementById('vibeSelect');
+const ageLimitSelect = document.getElementById('ageLimitSelect');
 const resetBtn = document.getElementById('resetFilters');
 const toggleAdvancedBtn = document.getElementById('toggleAdvancedFilters');
 const advancedFilters = document.getElementById('advancedFilters');
@@ -63,9 +64,9 @@ const categories = {
         baseParams: '&sort_by=popularity.desc'
     },
     'top_rated_tv': {
-        title: '16+ Animation',
+        title: 'Pure Animation',
         endpoint: 'discover/tv',
-        baseParams: '&with_genres=16&sort_by=popularity.desc' // Ensure 16 is always applied
+        baseParams: '&with_genres=16&sort_by=popularity.desc&certification_country=US&certification.lte=TV-14'
     }
 };
 
@@ -212,6 +213,12 @@ async function fetchData() {
         if (ratingSelect.value) {
             params.set('vote_average.gte', ratingSelect.value);
             params.set('vote_count.gte', '100'); // Ensure we don't get obscure stuff with 1 vote
+        }
+
+        // Age Limit (Advanced) - override certification if user selected a value
+        if (ageLimitSelect && ageLimitSelect.value) {
+            params.set('certification_country', 'US');
+            params.set('certification.lte', ageLimitSelect.value);
         }
 
         // Construct final URL
@@ -381,6 +388,7 @@ sortSelect.addEventListener('change', resetAndFetch);
 eraSelect.addEventListener('change', resetAndFetch);
 ratingSelect.addEventListener('change', resetAndFetch);
 vibeSelect.addEventListener('change', resetAndFetch);
+if (ageLimitSelect) ageLimitSelect.addEventListener('change', resetAndFetch);
 
 resetBtn.addEventListener('click', () => {
     providerSelect.value = '';
@@ -389,6 +397,7 @@ resetBtn.addEventListener('click', () => {
     eraSelect.value = '';
     ratingSelect.value = '';
     vibeSelect.value = '';
+    if (ageLimitSelect) ageLimitSelect.value = '';
     resetAndFetch();
 });
 
