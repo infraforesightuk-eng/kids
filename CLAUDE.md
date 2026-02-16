@@ -59,7 +59,8 @@ This pattern allows for easy testing (services can be instantiated with test dat
 
 The frontend is page-based with shared JavaScript modules:
 
-- **index.html** → `home.js`: Homepage with featured content and category rows
+- **index.html** → `home.js`: Homepage with hero section, category rows (Trending Movies, Popular TV Shows, Pure Animation)
+- **seeall.html** → `see-all.js`: Browse/filter page with advanced filters (genre, year, rating, vibe, age limit)
 - **search.html** → `search.js`: Search interface
 - **viewMovie.html** → `view.js`: Movie/TV detail pages
 - **WatchMovie.html** → `watch.js`: Video player with embedded streams
@@ -87,9 +88,36 @@ await service.disconnect();
 await fs.unlink(dbPath); // cleanup
 ```
 
-## Deployment notes
+## Deployment
 
- sync the changes from your development folder to the production web folder (/var/www/home.btfm.uk/html
+The frontend is deployed two ways:
+
+### Cloudflare Pages
+
+```bash
+cd html && npx wrangler pages deploy . --project-name=nebula
+```
+
+- Project name: `nebula`
+- Config: `html/wrangler.toml` (must only contain `name` and `pages_build_output_dir` — Cloudflare Pages does **not** support `[observability]` blocks)
+- Deploys all static files from `html/`
+
+### Production Server
+
+Sync to the local production web folder:
+
+```bash
+rsync -av --delete /home/brett/kids/html/ /var/www/home.btfm.uk/html/
+```
+
+When the user says "push to CF pages" or "push to cloudflare", run both the rsync and the wrangler deploy.
+
+## TMDB API Notes
+
+- API key is stored in frontend JS files (`97df57ffd9278a37bc12191e00332053`)
+- The Animation section uses `discover/tv` with `with_genres=16` (Animation genre)
+- Age filtering uses TV certifications (`certification_country=US&certification.lte=TV-14`), **not** movie ratings (PG-13, R, etc.)
+- TV certification levels: TV-Y, TV-Y7, TV-G, TV-PG, TV-14, TV-MA
 
 ## Current Development Status
 
@@ -100,6 +128,9 @@ Completed:
 - Database schema (Profile, Whitelist, TimeLimit, ActivityLog)
 - Profile CRUD API endpoints
 - Whitelist management API endpoints (add, get, remove)
+- Homepage categories: Trending Movies, Popular TV Shows, Pure Animation (with TV-14 certification filter)
+- See-all page with advanced filters (genre, year, rating, vibe, age limit)
+- Loading screen animation (types "Nebula")
 
 Next steps:
 
